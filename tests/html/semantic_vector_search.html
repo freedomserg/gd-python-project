@@ -1,0 +1,2842 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Semantic vector search: the new frontier in product discovery</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="This article describes semantic vector search, the next major step in the quest to provide relevant and timely search results that match customer’s shopping intents." />
+    <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+    <link rel="canonical" href="https://blog.griddynamics.com/semantic-vector-search-the-new-frontier-in-product-discovery/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="https://blog.griddynamics.com/semantic-vector-search-the-new-frontier-in-product-discovery/amp/" />
+    
+    <meta property="og:site_name" content="Grid Dynamics Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Semantic vector search: the new frontier in product discovery" />
+    <meta property="og:description" content="This article describes semantic vector search, the next major step in the quest to provide relevant and timely search results that match customer’s shopping intents." />
+    <meta property="og:url" content="https://blog.griddynamics.com/semantic-vector-search-the-new-frontier-in-product-discovery/" />
+    <meta property="og:image" content="https://blog.griddynamics.com/content/images/2020/01/svs_post_banner_v2.jpg" />
+    <meta property="article:published_time" content="2020-01-09T17:50:56.000Z" />
+    <meta property="article:modified_time" content="2020-01-13T16:48:20.000Z" />
+    <meta property="article:tag" content="Machine Learning and Artificial Intelligence" />
+    <meta property="article:tag" content="E-commerce" />
+    <meta property="article:tag" content="Search" />
+    
+    <meta property="article:publisher" content="https://www.facebook.com/griddynamics/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Semantic vector search: the new frontier in product discovery" />
+    <meta name="twitter:description" content="This article describes semantic vector search, the next major step in the quest to provide relevant and timely search results that match customer’s shopping intents." />
+    <meta name="twitter:url" content="https://blog.griddynamics.com/semantic-vector-search-the-new-frontier-in-product-discovery/" />
+    <meta name="twitter:image" content="https://blog.griddynamics.com/content/images/2020/01/svs_post_banner_v2.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Eugene Steinberg" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Machine Learning and Artificial Intelligence, E-commerce, Search" />
+    <meta name="twitter:site" content="@GridDynamics" />
+    <meta property="og:image:width" content="1440" />
+    <meta property="og:image:height" content="259" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Grid Dynamics Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://blog.griddynamics.com/favicon.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Eugene Steinberg",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.griddynamics.com/content/images/2018/07/eugeneheadshot.png",
+            "width": 200,
+            "height": 200
+        },
+        "url": "https://blog.griddynamics.com/author/eugene-steinberg/",
+        "sameAs": []
+    },
+    "headline": "Semantic vector search: the new frontier in product discovery",
+    "url": "https://blog.griddynamics.com/semantic-vector-search-the-new-frontier-in-product-discovery/",
+    "datePublished": "2020-01-09T17:50:56.000Z",
+    "dateModified": "2020-01-13T16:48:20.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://blog.griddynamics.com/content/images/2020/01/svs_post_banner_v2.jpg",
+        "width": 1440,
+        "height": 259
+    },
+    "keywords": "Machine Learning and Artificial Intelligence, E-commerce, Search",
+    "description": "This article describes semantic vector search, the next major step in the quest to provide relevant and timely search results that match customer’s shopping intents.",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://blog.griddynamics.com/"
+    }
+}
+    </script>
+
+    <script src="/public/ghost-sdk.min.js?v=8e89579899"></script>
+<script>
+ghost.init({
+	clientId: "ghost-frontend",
+	clientSecret: "58f72e6517d6"
+});
+</script>
+    <meta name="generator" content="Ghost 1.26" />
+    <link rel="alternate" type="application/rss+xml" title="Grid Dynamics Blog" href="https://blog.griddynamics.com/rss/" />
+    <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=400865&conversionId=1918380&fmt=gif" />
+<style>
+#leaveform1 span.hh1 {position:relative;font-size:27px;font-weight:700;color:#4a4a4a;}
+#leaveform1 span.hh1::after {display:block;content:'';margin:15px auto 30px;width: 96px;background-color: #ff8516;height: 2px;}
+#leaveform1 #mc-embedded-subscribe2 {cursor:pointer;transition: .5s ease;text-transform: uppercase;font-size: 15px;font-weight: 600;line-height: 19px;text-align: center;border-radius: 20px;height: 40px;min-width: 144px;padding: 2px 7px;color: #fff;background: linear-gradient(74deg,#fe6b59 3%,#fba320 69%,#fe8d31 100%);display:block;margin:0px auto 10px;}
+#subscrdone,#searchdone {width:175px;margin:0px auto;}
+    
+.testdevnav #topmenu, .testdevnav #phone, .testdevnav #topsocial {display:none;}
+.testdevnav #topmenudev {display:block!important;}
+*::selection {background-color:#3f91fd;color:#fff;}
+body.postid5c93c79425936c00bfee6383 #mypost table tr th {border:1px solid #999;padding:6px 10px;}
+body.postid5c93c79425936c00bfee6383 #mypost table tr td {border:1px solid #999;padding:6px 10px;}
+article.featured.postid5b0daab8c3574600bf6e952a span.newau, article.featured.postid5b0daab8c3574600bf6e952a span.newau + span {padding:4px 0px 4px 4px;background:#0006;} 
+nav #mainmenu li.explore {line-height:1;}
+
+.new-cta img {width:100%;height:auto;display:block;margin:10px 0px;}
+.new-cta:hover img {opacity:0.9;}
+    
+body.postid5cc7320025936c00bfee6410 header {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.16);}
+body.postid5cc7320025936c00bfee6410 header #topmenu {display:none!important;}
+body.postid5cc7320025936c00bfee6410 header #topfixed {display:none!important;}
+body.postid5cc7320025936c00bfee6410 nav {display:none!important;}
+body.postid5cc7320025936c00bfee6410 #share {display:none!important;}
+body.postid5cc7320025936c00bfee6410 #comments {display:none!important;}
+body.postid5cc7320025936c00bfee6410 .blognav {display:none!important;}
+body.postid5cc7320025936c00bfee6410 .inner.ctas {display:none!important;}
+body.postid5cc7320025936c00bfee6410 .tag.secondary {display:none!important;}
+body.postid5cc7320025936c00bfee6410 .prefooter {display:none!important;}
+body.postid5cc7320025936c00bfee6410 .blog.post #postcontent {width:100%!important;}
+body.postid5cc7320025936c00bfee6410 .blog.post #postcontent > h1 {margin-bottom:15px;}
+body.postid5cc7320025936c00bfee6410 .blog.post #postcontent > h2 {margin-bottom:25px;font-size:2.5rem;}
+
+body.postid5cd0bdd625936c00bfee644f header {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.16);}
+body.postid5cd0bdd625936c00bfee644f header #topmenu {display:none!important;}
+body.postid5cd0bdd625936c00bfee644f header #topfixed {display:none!important;}
+body.postid5cd0bdd625936c00bfee644f nav {display:none!important;}
+body.postid5cd0bdd625936c00bfee644f #share {display:none!important;}
+body.postid5cd0bdd625936c00bfee644f #comments {display:none!important;}
+body.postid5cd0bdd625936c00bfee644f .blognav {display:none!important;}
+body.postid5cd0bdd625936c00bfee644f .inner.ctas {display:none!important;}
+body.postid5cd0bdd625936c00bfee644f .tag.secondary {display:none!important;}
+body.postid5cd0bdd625936c00bfee644f .prefooter {display:none!important;}
+body.postid5cd0bdd625936c00bfee644f .blog.post #postcontent {width:100%!important;}
+body.postid5cd0bdd625936c00bfee644f .blog.post #postcontent > h1 {margin-bottom:15px;}
+body.postid5cd0bdd625936c00bfee644f .blog.post #postcontent > h2 {margin-bottom:25px;font-size:2.5rem;}
+
+body.postid5cdcbe5125936c00bfee64a7 header {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.16);}
+body.postid5cdcbe5125936c00bfee64a7 header #topmenu {display:none!important;}
+body.postid5cdcbe5125936c00bfee64a7 header #topfixed {display:none!important;}
+body.postid5cdcbe5125936c00bfee64a7 nav {display:none!important;}
+body.postid5cdcbe5125936c00bfee64a7 #share {display:none!important;}
+body.postid5cdcbe5125936c00bfee64a7 #comments {display:none!important;}
+body.postid5cdcbe5125936c00bfee64a7 .blognav {display:none!important;}
+body.postid5cdcbe5125936c00bfee64a7 .inner.ctas {display:none!important;}
+body.postid5cdcbe5125936c00bfee64a7 .tag.secondary {display:none!important;}
+body.postid5cdcbe5125936c00bfee64a7 .prefooter {display:none!important;}
+body.postid5cdcbe5125936c00bfee64a7 .blog.post #postcontent {width:100%!important;}
+body.postid5cdcbe5125936c00bfee64a7 .blog.post #postcontent > h1 {margin-bottom:15px;}
+body.postid5cdcbe5125936c00bfee64a7 .blog.post #postcontent > h2 {margin-bottom:25px;font-size:2.5rem;}
+
+body.postid5cf9488f11262300375b5de4 header {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.16);}
+body.postid5cf9488f11262300375b5de4 header #topmenu {display:none!important;}
+body.postid5cf9488f11262300375b5de4 header #topfixed {display:none!important;}
+body.postid5cf9488f11262300375b5de4 nav {display:none!important;}
+body.postid5cf9488f11262300375b5de4 #share {display:none!important;}
+body.postid5cf9488f11262300375b5de4 #comments {display:none!important;}
+body.postid5cf9488f11262300375b5de4 .blognav {display:none!important;}
+body.postid5cf9488f11262300375b5de4 .inner.ctas {display:none!important;}
+body.postid5cf9488f11262300375b5de4 .tag.secondary {display:none!important;}
+body.postid5cf9488f11262300375b5de4 .prefooter {display:none!important;}
+body.postid5cf9488f11262300375b5de4 .blog.post #postcontent {width:100%!important;}
+body.postid5cf9488f11262300375b5de4 .blog.post #postcontent > h1 {margin-bottom:15px;}
+body.postid5cf9488f11262300375b5de4 .blog.post #postcontent > h2 {margin-bottom:25px;font-size:2.5rem;}
+    
+body.casestudy header {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.16);}
+body.casestudy header #topmenu {display:none!important;}
+body.casestudy header #topfixed {display:none!important;}
+body.casestudy nav {display:none!important;}
+body.casestudy #share {display:none!important;}
+body.casestudy #comments {display:none!important;}
+body.casestudy .blognav {display:none!important;}
+body.casestudy .inner.ctas {display:none!important;}
+body.casestudy .tag.secondary {display:none!important;}
+body.casestudy .prefooter {display:none!important;}
+body.casestudy .blog.post #postcontent {width:100%!important;}
+body.casestudy .blog.post #postcontent > h1 {margin-bottom:15px;}
+body.casestudy .blog.post #postcontent > h2 {margin-bottom:25px;font-size:2.5rem;}
+</style>
+<meta name="cmsmagazine" content="da0738f9ba7f2c0a03878b32a7c9bfc6" />
+	<meta name="google-site-verification" content="Hn6fr1M68PxxoBqtvPN8lCxENFfYE0lb1qBx4YyudN4" />
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PGBPH5');</script>
+<!-- End Google Tag Manager -->
+	<meta name="cmsmagazine" content="da0738f9ba7f2c0a03878b32a7c9bfc6" />
+	<meta name="google-site-verification" content="JMBIDXC03md2jdlPf2MpnOLpeXCDs-Ef9XAZrsp3fQw" />
+	<meta name="google-site-verification" content="Hn6fr1M68PxxoBqtvPN8lCxENFfYE0lb1qBx4YyudN4" />
+	<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5c13980f1c98570011922a5e&product=inline-share-buttons' async='async'></script>
+<!-- Twitter universal website tag code -->
+<script>
+!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+// Insert Twitter Pixel ID and Standard Event data below
+twq('init','nzsmp');
+twq('track','PageView');
+</script>
+<!-- End Twitter universal website tag code -->
+	<style>
+	
+#mc_embed_signup form {display:block; position:relative; text-align:left; padding:10px 0 10px 3%}
+#mc_embed_signup h2 {font-weight:bold; padding:0; margin:15px 0; font-size:1.4em;}
+#mc_embed_signup input {border: 1px solid #ABB0B2; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+#mc_embed_signup input[type=checkbox]{-webkit-appearance:checkbox;}
+#mc_embed_signup input[type=radio]{-webkit-appearance:radio;}
+#mc_embed_signup input:focus {border-color:#333;}
+#mc_embed_signup .button {clear:both; background-color: #aaa; border: 0 none; border-radius:4px; transition: all 0.23s ease-in-out 0s; color: #FFFFFF; cursor: pointer; display: inline-block; font-size:15px; font-weight: normal; height: 32px; line-height: 32px; margin: 0 5px 10px 0; padding: 0 22px; text-align: center; text-decoration: none; vertical-align: top; white-space: nowrap; width: auto;}
+#mc_embed_signup .button:hover {background-color:#777;}
+#mc_embed_signup .small-meta {font-size: 11px;}
+#mc_embed_signup .nowrap {white-space:nowrap;}
+
+#mc_embed_signup .mc-field-group {clear:left; position:relative; width:96%; padding-bottom:3%; min-height:50px;}
+#mc_embed_signup .size1of2 {clear:none; float:left; display:inline-block; width:46%; margin-right:4%;}
+* html #mc_embed_signup .size1of2 {margin-right:2%; /* Fix for IE6 double margins. */}
+#mc_embed_signup .mc-field-group label {display:block; margin-bottom:3px;}
+#mc_embed_signup .mc-field-group input {display:block; width:100%; padding:8px 0; text-indent:2%;}
+#mc_embed_signup .mc-field-group select {display:inline-block; width:99%; padding:5px 0; margin-bottom:2px;}
+
+#mc_embed_signup .datefield, #mc_embed_signup .phonefield-us{padding:5px 0;}
+#mc_embed_signup .datefield input, #mc_embed_signup .phonefield-us input{display:inline; width:60px; margin:0 2px; letter-spacing:1px; text-align:center; padding:5px 0 2px 0;}
+#mc_embed_signup .phonefield-us .phonearea input, #mc_embed_signup .phonefield-us .phonedetail1 input{width:40px;}
+#mc_embed_signup .datefield .monthfield input, #mc_embed_signup .datefield .dayfield input{width:30px;}
+#mc_embed_signup .datefield label, #mc_embed_signup .phonefield-us label{display:none;}
+
+#mc_embed_signup .indicates-required {text-align:right; font-size:11px; margin-right:4%;}
+#mc_embed_signup .asterisk {color:#e85c41; font-size:150%; font-weight:normal; position:relative; top:5px;}     
+#mc_embed_signup .clear {clear:both;}
+
+#mc_embed_signup .mc-field-group.input-group ul {margin:0; padding:5px 0; list-style:none;}
+#mc_embed_signup .mc-field-group.input-group ul li {display:block; padding:3px 0; margin:0;}
+#mc_embed_signup .mc-field-group.input-group label {display:inline;}
+#mc_embed_signup .mc-field-group.input-group input {display:inline; width:auto; border:none;}
+
+#mc_embed_signup div#mce-responses {float:left; top:-1.4em; padding:0em .5em 0em .5em; overflow:hidden; width:90%; margin: 0 5%; clear: both;}
+#mc_embed_signup div.response {margin:1em 0; padding:1em .5em .5em 0; font-weight:bold; float:left; top:-1.5em; z-index:1; width:80%;}
+#mc_embed_signup #mce-error-response {display:none;}
+#mc_embed_signup #mce-success-response {color:#529214; display:none;}
+#mc_embed_signup label.error {display:block; float:none; width:auto; margin-left:1.05em; text-align:left; padding:.5em 0;}
+
+#mc-embedded-subscribe {clear:both; width:auto; display:block; margin:1em 0 1em 5%;}
+#mc_embed_signup #num-subscribers {font-size:1.1em;}
+#mc_embed_signup #num-subscribers span {padding:.5em; border:1px solid #ccc; margin-right:.5em; font-weight:bold;}
+
+#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {display:inline-block; margin:2px 0 1em 0; padding:5px 10px; background-color:rgba(255,255,255,0.85); -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size:14px; font-weight:normal; z-index:1; color:#e85c41;}
+#mc_embed_signup #mc-embedded-subscribe-form input.mce_inline_error {border:2px solid #e85c41;}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-display:auto;
+	src: url('/assets/fonts/SourceSansPro-Regular.ttf');
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-display:auto;
+	src: url('/assets/fonts/SourceSansPro-Bold.ttf');
+	font-weight: bold;
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-display:auto;
+	src: url('/assets/fonts/SourceSansPro-Italic.ttf');
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-display:auto;
+	src: url('/assets/fonts/SourceSansPro-BoldItalic.ttf');
+	font-weight: bold;
+	font-style: italic;
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-display:auto;
+	src: url('/assets/fonts/SourceSansPro-Light.ttf');
+	font-weight: 300;
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-display:auto;
+	src: url('/assets/fonts/SourceSansPro-LightItalic.ttf');
+	font-style: italic;
+	font-weight: 300;
+}
+:root {
+    /* Colours */
+    --blue: #3eb0ef;
+    --green: #a4d037;
+    --purple: #ad26b4;
+    --yellow: #fecd35;
+    --red: #f05230;
+    --darkgrey: #15171A;
+    --midgrey: #738a94;
+    --lightgrey: #c5d2d9;
+    --whitegrey: #e5eff5;
+    --pink: #fa3a57;
+    --brown: #a3821a;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;}
+body {line-height: 1;}
+ol,ul {list-style: none;}
+blockquote,q {quotes: none;}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {content: "";content: none;}
+table {border-spacing: 0;border-collapse: collapse;}
+img {max-width: 100%;}
+html {box-sizing: border-box;font-family: sans-serif;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;}
+*,
+*:before,
+*:after {box-sizing: inherit;}
+a {background-color: transparent;}
+a:active,
+a:hover {outline: 0;}
+b,strong {font-weight: bold;}
+i,em,dfn {font-style: italic;}
+h1 {margin: 0.67em 0;font-size: 2em;}
+small {font-size: 80%;}
+sub,sup {position: relative;font-size: 75%;line-height: 0;vertical-align: baseline;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+img {border: 0;}
+svg:not(:root) {overflow: hidden;}
+mark {background-color: #fdffb6;}
+code,kbd,pre,samp {font-family: monospace, monospace;font-size: 1em;}
+button,input,optgroup,select,textarea {margin: 0; /* 3 */ color: inherit; /* 1 */ font: inherit; /* 2 */}
+button {overflow: visible;border: none;}
+button,select {text-transform: none;}
+button,html input[type="button"],
+/* 1 */
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer; /* 3 */
+
+    -webkit-appearance: button; /* 2 */
+}
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+input {
+    line-height: normal;
+}
+input:focus {
+    outline: none;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+}
+input[type="search"] {
+    box-sizing: content-box; /* 2 */
+
+    -webkit-appearance: textfield; /* 1 */
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+legend {
+    padding: 0; /* 2 */
+    border: 0; /* 1 */
+}
+textarea {
+    overflow: auto;
+}
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+td,
+th {
+    padding: 0;
+}
+html {
+    /*overflow-x: hidden;*/
+    overflow-y: scroll;
+    font-size: 62.5%;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+    /*overflow-x: hidden;*/
+    color: color(var(--midgrey) l(-25%));
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 'Source Sans Pro', Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.6em;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    background: #fff;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+}
+
+hr {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 2.5em 0 3.5em;
+    padding: 0;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid color(var(--lightgrey) l(+10%));
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+p,
+ul,
+ol,
+dl,
+blockquote {
+    margin: 0 0 1.5em 0;
+}
+
+ol,
+ul {
+    padding-left: 1.3em;
+    padding-right: 1.5em;
+}
+
+ol ol,
+ul ul,
+ul ol,
+ol ul {
+    margin: 0.5em 0 1em;
+}
+
+ul {
+    list-style: disc;
+}
+
+ol {
+    list-style: decimal;
+}
+
+li {
+    margin: 0.5em 0;
+    padding-left: 0.3em;
+    line-height: 1.6em;
+}
+
+dt {
+    float: left;
+    margin: 0 20px 0 0;
+    width: 120px;
+    color: var(--darkgrey);
+    font-weight: 500;
+    text-align: right;
+}
+
+dd {
+    margin: 0 0 5px 0;
+    text-align: left;
+}
+
+blockquote {
+    margin: 1.5em 0;
+    padding: 0 1.6em 0 1.6em;
+    border-left: var(--whitegrey) 0.5em solid;;
+}
+
+blockquote p {
+    margin: 0.8em 0;
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+blockquote small {
+    display: inline-block;
+    margin: 0.8em 0 0.8em 1.5em;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+/* Quotation marks */
+blockquote small:before {
+    content: "\2014 \00A0";
+}
+
+blockquote cite {
+    font-weight: bold;
+}
+blockquote cite a {
+    font-weight: normal;
+}
+
+a {
+    /*color: color(var(--blue) l(-5%));
+    text-decoration: none;*/
+}
+
+a:hover {
+    /*text-decoration: underline;*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    line-height: 1.15;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+}
+
+h1 {
+    margin: 0 0 0.5em 0;
+    font-size: 5rem;
+    font-weight: 700;
+}
+@media (max-width: 500px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+}
+
+h2 {
+    margin: 1.5em 0 0.5em 0;
+    font-size: 2rem;
+}
+@media (max-width: 500px) {
+    h2 {
+        font-size: 1.8rem;
+    }
+}
+
+h3 {
+    margin: 1.5em 0 0.5em 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+@media (max-width: 500px) {
+    h3 {
+        font-size: 1.7rem;
+    }
+}
+
+h4 {
+    margin: 1.5em 0 0.5em 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+h5 {
+    margin: 1.5em 0 0.5em 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+h6 {
+    margin: 1.5em 0 0.5em 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.fancybox-wrap,
+.fancybox-skin,
+.fancybox-outer,
+.fancybox-inner,
+.fancybox-image,
+.fancybox-wrap iframe,
+.fancybox-wrap object,
+.fancybox-nav,
+.fancybox-nav span,
+.fancybox-tmp
+{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	outline: none;
+	vertical-align: top;
+}
+
+.fancybox-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 8020;
+}
+
+.fancybox-skin {
+	position: relative;
+	background: #f9f9f9;
+	color: #444;
+	text-shadow: none;
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	        border-radius: 4px;
+}
+
+.fancybox-opened {
+	z-index: 8030;
+}
+
+.fancybox-opened .fancybox-skin {
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	   -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.fancybox-outer, .fancybox-inner {
+	position: relative;
+}
+
+.fancybox-inner {
+	overflow: hidden;
+}
+
+.fancybox-type-iframe .fancybox-inner {
+	-webkit-overflow-scrolling: touch;
+}
+
+.fancybox-error {
+	color: #444;
+	font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 0;
+	padding: 15px;
+	white-space: nowrap;
+}
+
+.fancybox-image, .fancybox-iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.fancybox-image {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+	background-image: url('https://grid-dynamics-blog.ghost.io/assets/js/fancybox/fancybox_sprite.png');
+}
+
+#fancybox-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -22px;
+	margin-left: -22px;
+	background-position: 0 -108px;
+	opacity: 0.8;
+	cursor: pointer;
+	z-index: 8060;
+}
+
+#fancybox-loading div {
+	width: 44px;
+	height: 44px;
+	background: url('https://grid-dynamics-blog.ghost.io/assets/js/fancybox/fancybox_loading.gif') center center no-repeat;
+}
+
+.fancybox-close {
+	position: absolute;
+	top: -18px;
+	right: -18px;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	z-index: 8040;
+}
+
+.fancybox-nav {
+	position: absolute;
+	top: 0;
+	width: 40%;
+	height: 100%;
+	cursor: pointer;
+	text-decoration: none;
+	background: transparent url('https://grid-dynamics-blog.ghost.io/assets/js/fancybox/blank.gif'); /* helps IE */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	z-index: 8040;
+}
+
+.fancybox-prev {
+	left: 0;
+}
+
+.fancybox-next {
+	right: 0;
+}
+
+.fancybox-nav span {
+	position: absolute;
+	top: 50%;
+	width: 36px;
+	height: 34px;
+	margin-top: -18px;
+	cursor: pointer;
+	z-index: 8040;
+	visibility: hidden;
+}
+
+.fancybox-prev span {
+	left: 10px;
+	background-position: 0 -36px;
+}
+
+.fancybox-next span {
+	right: 10px;
+	background-position: 0 -72px;
+}
+
+.fancybox-nav:hover span {
+	visibility: visible;
+}
+
+.fancybox-tmp {
+	position: absolute;
+	top: -99999px;
+	left: -99999px;
+	visibility: hidden;
+	max-width: 99999px;
+	max-height: 99999px;
+	overflow: visible !important;
+}
+
+/* Overlay helper */
+
+.fancybox-lock {
+    overflow: hidden !important;
+    width: auto;
+}
+
+.fancybox-lock body {
+    overflow: hidden !important;
+}
+
+.fancybox-lock-test {
+    overflow-y: hidden !important;
+}
+
+.fancybox-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	z-index: 8010;
+	background: url('https://grid-dynamics-blog.ghost.io/assets/js/fancybox/fancybox_overlay.png');
+}
+
+.fancybox-overlay-fixed {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+.fancybox-lock .fancybox-overlay {
+	overflow: auto;
+	overflow-y: scroll;
+}
+
+/* Title helper */
+
+.fancybox-title {
+	visibility: hidden;
+	font: normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	position: relative;
+	text-shadow: none;
+	z-index: 8050;
+}
+
+.fancybox-opened .fancybox-title {
+	visibility: visible;
+}
+
+.fancybox-title-float-wrap {
+	position: absolute;
+	bottom: 0;
+	right: 50%;
+	margin-bottom: -35px;
+	z-index: 8050;
+	text-align: center;
+}
+
+.fancybox-title-float-wrap .child {
+	display: inline-block;
+	margin-right: -100%;
+	padding: 2px 20px;
+	background: transparent; /* Fallback for web browsers that doesn't support RGBa */
+	background: rgba(0, 0, 0, 0.8);
+	-webkit-border-radius: 15px;
+	   -moz-border-radius: 15px;
+	        border-radius: 15px;
+	text-shadow: 0 1px 2px #222;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 24px;
+	white-space: nowrap;
+}
+
+.fancybox-title-outside-wrap {
+	position: relative;
+	margin-top: 10px;
+	color: #fff;
+}
+
+.fancybox-title-inside-wrap {
+	padding-top: 10px;
+}
+
+.fancybox-title-over-wrap {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #fff;
+	padding: 10px;
+	background: #000;
+	background: rgba(0, 0, 0, .8);
+}
+
+/*Retina graphics!*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	   only screen and (min--moz-device-pixel-ratio: 1.5),
+	   only screen and (min-device-pixel-ratio: 1.5){
+
+	#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+		background-image: url('https://grid-dynamics-blog.ghost.io/assets/js/fancybox/fancybox_sprite@2x.png');
+		background-size: 44px 152px; /*The size of the normal image, half the size of the hi-res image*/
+	}
+
+	#fancybox-loading div {
+		background-image: url('https://grid-dynamics-blog.ghost.io/assets/js/fancybox/fancybox_loading@2x.gif');
+		background-size: 24px 24px; /*The size of the normal image, half the size of the hi-res image*/
+	}
+}
+.slick-slider
+{
+    position: relative;
+
+    display: block;
+    box-sizing: border-box;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+
+    height: auto;
+
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+.slick-loading .slick-list
+{
+    /*background: #fff url('/ajax-loader.gif') center center no-repeat;*/
+    background: #fff;
+}
+.slick-prev,
+.slick-next
+{
+    font-size: 0;
+    line-height: 0;
+	z-index:15;
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus
+{
+    color: transparent;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before
+{
+    opacity: 1;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before
+{
+    opacity: .25;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    font-size: 20px;
+    line-height: 1;
+
+    opacity: .75;
+    color: white;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev
+{
+    left: -35px;
+}
+[dir='rtl'] .slick-prev
+{
+    right: -35px;
+    left: auto;
+}
+.slick-prev:before
+{
+    content:' ';width:48px;height:48px;display:block;
+	background:url('/assets/css/goleft.png') center no-repeat;
+}
+[dir='rtl'] .slick-prev:before
+{
+    content:' ';width:48px;height:48px;display:block;
+	background:url('/assets/css/goright.png') center no-repeat;
+}
+
+.slick-next
+{
+    right: -35px;
+}
+[dir='rtl'] .slick-next
+{
+    right: auto;
+    left: -35px;
+}
+.slick-next:before
+{
+    content:' ';width:48px;height:48px;display:block;
+	background:url('/assets/css/goright.png') center no-repeat;
+}
+[dir='rtl'] .slick-next:before
+{
+   content:' ';width:48px;height:48px;display:block;
+	background:url('/assets/css/goleft.png') center no-repeat;
+}
+
+/* Dots */
+.slick-dotted.slick-slider
+{
+    margin-bottom: 30px;
+}
+
+.slick-dots
+{
+    position: absolute;
+    bottom: -25px;
+
+    display: block;
+
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+
+    text-align: center;
+}
+.slick-dots li
+{
+    position: relative;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+
+    cursor: pointer;
+}
+.slick-dots li button
+{
+    font-size: 0;
+    line-height: 0;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus
+{
+    outline: none;
+}
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before
+{
+    opacity: 1;
+}
+.slick-dots li button:before
+{
+    font-family: 'slick';
+    font-size: 6px;
+    line-height: 20px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 20px;
+    height: 20px;
+
+    content: '•';
+    text-align: center;
+
+    opacity: .25;
+    color: black;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before
+{
+    opacity: .75;
+    color: black;
+}
+/*MAIN*/
+#share2.scroll-to-fixed-fixed {position:fixed!important;}
+.newcta.scroll-to-fixed-fixed {position:fixed!important;}
+html {display:none;}
+* {box-sizing:border-box;}
+:focus {outline:0;}
+body,input,select{font-family:'Source Sans Pro',sans-serif}
+blockquote,body,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}
+table{border-collapse:collapse;border-spacing:0}
+abbr,acronym,fieldset,img{border:0}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:400}
+ol,ul{list-style:none}
+caption,th{text-align:left}
+body{background-color:#fcfcfc;width:100%;}
+.clear {clear:both;}
+.height50 {margin-bottom:50px;}
+.height30 {margin-bottom:30px!important;}
+.height10 {margin-bottom:10px!important;}
+.center,body{text-align:center}
+.left{float:left}
+.right{float:right}
+.mobile {display:none;}
+.hidden {display:none;}
+#mobilefils {display:none;}
+#fademobile {display:none;}
+#mobnav {display:none;}
+#wrap,.inner{margin:0 auto}
+.inner{width:1200px}
+.inner::after, .clearfix::after, .blog.list .row::after{content:'';display:block;clear:both;}
+
+.ellip {display:block;height:100%;}
+.ellip-line {display: inline-block;text-overflow: ellipsis;white-space: nowrap;word-wrap: normal;max-width: 100%;}
+.ellip, .ellip-line {position: relative;overflow: hidden;}
+
+#wrap {color:#4a4a4a;}
+header {clear:both;width:100%;background-color:#ffffff;height:72px;}
+header {position:relative}
+header #logo {float:left;}
+header #logo img {height:36px;margin:12px 50px 24px 0px;}
+header .topmenu {height:48px;margin:12px 0px;padding:0px;float:left;}
+header .topmenu li {display:inline-block;vertical-align:top;text-transform:uppercase;margin:0px 20px 0px 0px;}
+header .topmenu li a {text-decoration:none;opacity:1;color:#000000;font-size:16px;font-weight:bold;line-height:48px;}
+header .topmenu li a:hover, header .topmenu li.current a {color:#FF8700;}
+header #topfixed {position:relative;top:0px;right:-120px;white-space:nowrap;}
+@media (max-width: 1280px) {
+	header #topfixed {right:0px;}
+}
+header #getintouch {display:block;float:left;text-decoration:none;text-transform:uppercase;margin:16px 0px 16px 0px;border-radius:20px;background-color:#FF8700;color:#FFFFFF;font-size:14px;font-weight:bold;line-height:40px;text-align:center;height:40px;width:144px;cursor:pointer;}
+header #getintouch:hover {opacity:0.8;}
+header #phone {float:left;text-decoration:none;display:block;margin:26px 30px 26px 0px;opacity:0.75;color:#000000;font-family:"Source Sans Pro";font-size: 16px;line-height:20px;padding-left:25px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/phone.svg') left center no-repeat transparent;}
+header #phone:hover {color:#FF8700;}
+header #topsocial {float:left;height:20px;margin:26px 0px; }
+header #topsocial .facebook, .facebook {display:inline-block;margin:0px 10px 0px 0px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/facebook.svg') center no-repeat;}
+header #topsocial .twitter, .twitter {display:inline-block;margin:0px 10px 0px 0px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/twitter.svg') center no-repeat;}
+header #topsocial .linkedin, .linkedin {display:inline-block;margin:0px 0px 0px 0px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/linkedin.svg') center no-repeat;}
+
+div#hero {clear:both;width:100%;background-size:cover!important;background-color:#4a4a4a;/*padding-top:234px;*/min-height:400px;position:relative;}
+div#hero fade {/*background-color:#0003;*/position:absolute;top:0;left:0;width:100%;height:100%;}
+div#hero .inner {/*padding-top:134px;*/min-height:400px;position:relative;   width:100%;max-width:1300px;}
+.post-template div#hero {background-attachment:fixed;}
+
+body.home-template div#hero {background:url('/assets/css/blog_mainheader_background.jpg?nocache') center no-repeat transparent!important;background-size:cover!important;}
+body.home-template div#hero div.inner {background:url('https://blog.griddynamics.com/assets/css/blog_mainheader_figures.png?nocache') right top no-repeat transparent!important;background-size:1329px 400px!important;}
+
+.tag-template div#hero {min-height:400px;    background: url(https://blog.griddynamics.com/assets/css/backg.jpg) center no-repeat #0000!important;}
+div#hero.post {min-height:300px;padding-top:139px;}
+div#hero.authors {min-height:328px;padding-top:0px;}
+div#hero.authors .inner {padding-top:164px;}
+div#hero.authors h1{text-transform:uppercase;font-weight:400;font-size: 48px;line-height: 55px;}
+div#hero.authors h1 strong {font-weight:600;}
+div#hero h1 {text-align:left;font-weight:400;color: #FFFFFF;font-family: "Source Sans Pro";font-size: 24px;line-height: 31px;position: absolute;top:50%;transform: translateY(-50%);}
+div#hero div.h1 {text-align:left;font-weight:400;color: #FFFFFF;font-family: "Source Sans Pro";font-size: 24px;line-height: 31px;position: absolute;top:50%;transform: translateY(-50%);}
+div#hero h1.tag, div#hero h1.tag b {font-family: "Source Sans Pro";font-size:64px;line-height:74px;font-weight:600;}
+.tag-template div#hero h1.tag {max-width:700px;padding-left:50px;}
+.home-template div#hero h1 {/*max-width:700px;padding-left:50px;*/text-align:center;bottom: 15px;transform: none;width: 100%;font-size: 18px;top: auto;}
+.home-template div#hero h1 b {font-size:64px;}
+div#hero h1 b {display:block;text-transform:uppercase;font-size: 48px;	font-weight: bold;	line-height: 60px;}
+div#hero.explore {height:100px;min-height:auto;background:#fff;z-index:2;}
+div#hero.explore .inner{padding-top:20px;min-height:100px;max-width:1200px;}
+div#hero.explore .inner h1{color:#4a4a4a;font-size: 48px;	font-weight: bold;	line-height: 60px;}
+
+/*series hero*/
+body.tag-template.tag-introduction-to-augmented-reality div#hero div.inner {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_banner_black_ar_approved.png) right top no-repeat!important;background-size:1248px 400px!important;}
+body.tag-template.tag-deploying-in-stream-processing div#hero div.inner {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_banner_black_deploying_ISP_v6.png) right top no-repeat!important;background-size:1248px 400px!important;}
+body.tag-template.tag-implementing-autocomplete-with-solr-series div#hero div.inner {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_banner_black_autocomplete_approved.png) right top no-repeat!important;background-size:1248px 400px!important;}
+body.tag-template.tag-advanced-solr-lucene-topics-nested-search-for-e-commerce-applications div#hero div.inner {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_banner_black_nested_search_review.png?t=1) right top no-repeat!important;background-size:1248px 400px!important;}
+
+div.inner2 {width:100%;min-height:400px;}
+body.tag-template.tag-continuous-performance-testing div#hero div.inner2 {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_banner_black_continuous_performance_testing_v3_approved.png) right center no-repeat!important;background-size:1248px 400px!important;}
+body.tag-template.tag-data-science-toolkit-series div#hero div.inner2 {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_banner_black_data_science_toolkit_v3_approved.png) right top no-repeat!important;background-size:1248px 400px!important;}
+body.tag-template.tag-in-stream-processing-series div#hero div.inner2 {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_banner_black_ISP_v3_approved.png) right top no-repeat!important;background-size:1248px 400px!important;}
+body.tag-template.tag-image-search-series div#hero div.inner2 {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_banner_black_image_search_approved.png) right top no-repeat!important;background-size:1248px 400px!important;}
+
+nav {clear:both;width:100%;background-color:#FAFAFA;box-shadow:0 8px 16px 0 rgba(0,0,0,0.16);position:relative;}
+nav.scroll-to-fixed-fixed {z-index:1001!important;}
+nav.explore {background-color:#FaFaFa;box-shadow:0 8px 16px 0 rgba(0,0,0,0.16);position:relative;z-index: 3!important;}
+nav > .inner {height:60px;}
+nav #mainmenu {margin:0px;padding:0px;text-align:left;}
+nav #mainmenu li {display:inline-block;vertical-align:top;margin:18px 20px 18px 0px;}
+nav #mainmenu li a {text-decoration:none;color: #000000;font-family:"Source Sans Pro";	font-size: 19px;	font-weight: 600;	line-height: 24px;	text-align: center;}
+nav #mainmenu li a:hover, nav #mainmenu li.current a {color:#FF8700;}
+nav #mainmenu li.current {border-bottom:4px solid #FF8700;margin:0px 20px 0px 0px;padding:18px 0px 12px;}
+nav #mainmenu li.search .search2 {display:block;width:24px;height:24px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/search.svg') center no-repeat;cursor:pointer;position:relative;border:0px;padding:0px;}
+nav #mainmenu li.search {/*display:none!important;*/width:29px;}
+nav #mainmenu li.authors {/*display:none;*/}
+
+nav #mainmenu li.search input {display:none;}
+nav #mainmenu li.search form {z-index:1000;position:relative;}
+nav #mainmenu li.search.active input.button {display:block;width:29px;height:29px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/search.svg') center no-repeat;cursor:pointer;position:relative;border:0px;padding:0px;right:9px;z-index: 1001;bottom:0px;}
+nav #mainmenu li.search.active input.field {display:block;position:absolute;right:0px;width: 300px;background: #fff;border-radius: 15px;border:1px solid #ccc;padding:4px 12px;color: #505050;z-index:1000;/*top:0px;*/bottom:0px;}
+
+form#newsearch {border-radius:15px;border:1px solid #ccc;position:relative;}
+#newsearch input.button {display:block;width:29px;height:29px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/search.svg') center no-repeat;cursor:pointer;position:absolute;border:0px;padding:0px;left:0px;z-index:1001;bottom:0px;}
+#newsearch input.field {display:block;position:relative;right:0px;width:100%;background:transparent;border:0px;padding:4px 12px 4px 36px;color: #505050;}
+
+/*nav #mainmenu li.search.active:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    background:transparent;
+    z-index: 999;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}*/
+#results2 {display:none;width:100%;background:#ffffffe3;z-index:11;/*position:absolute;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.16);*/}
+#results2.active {display:block;}
+#results2 #results {display:block;width:100%;/*1200px;*/margin:0px auto;padding:0px 0px;text-align:left;position:relative;}
+#results2 #results > p {display:none;}
+#results2 #results > div > a {color:#4a4a4a;display:block;margin-bottom:10px;}
+#results2 #results > div > y {float:right;}
+#results2 #results > p + a {margin-top:20px!important;}
+#results2 #results > div:last-of-type > a {margin-bottom:20px!important;}
+#results2 #results > div > a h4, #results2 #results > div > a p {display:none;}
+
+.blog.list {padding:70px 0px 0px;}
+.blog.list article {position:relative;width:370px;height:430px;margin:0px 45px 70px 0px;float:left;}
+.blog.list article figure {width:370px;height:430px;overflow:hidden;background-color:#FFFFFF;text-align:left;position:relative;cursor:pointer;box-shadow: 0 20px 20px rgba(0,0,0,.08);-webkit-transition: all 250ms cubic-bezier(.02, .01, .47, 1); -moz-transition: all 250ms cubic-bezier(.02, .01, .47, 1); transition: all 250ms cubic-bezier(.02, .01, .47, 1);}
+.blog.list article.an2 figure  {box-shadow: 0 40px 40px rgba(0,0,0,.16);transform: translate(0,-20px);transition-delay: 0s !important;}
+
+::root {counter-reset: allsum, thissum;}
+.blog.list article {counter-increment:thissum;}
+.blog.list article figure span.counterr {display:none;position:absolute;right:0px;top:0px;width:60px;height:60px;text-align:right;padding:0px 5px 0px 0px;color:#fff;z-index:3;line-height:220%;}
+.blog.list article figure span.counterr:before {width:0px;display:block;content:'';position:absolute;z-index:-1;height:0px;border-bottom:60px solid transparent;color:#fff;text-align:right;border-right:60px solid #FF8700;}
+.blog.list .countered article figure span.counterr {display:block;}
+.blog.list article figure span.counterr .counter1::before {content:counter(thissum);}
+
+.blog.list article div.cntt h3:hover a {color:#FF8700;}
+.blog.list article fade {background-color:#0003;position:absolute;top:0;left:0;width:100%;height:100%;}
+.blog.list article#tag-list:hover  {position:relative;top:0px;box-shadow:none;}
+.blog.list .row article:nth-of-type(3n) {margin-right:0px!important;}
+.blog.list article .img {position:relative;display:block;text-decoration:none;width:100%;height:200px;background-color:#4a4a4a;background-size: cover!important;}
+.blog.list article .img span {position:absolute;left:33px;bottom:33px;background-color:#FF8700;color:#fff;padding:4px 7px;text-transform:uppercase;font-size:24px;font-weight:bold;line-height:20px;}
+.blog.list article div.cntt {width:100%;max-height:230px;padding:34px;font-size: 15px;	font-weight: 300;	line-height: 20px;}
+.blog.list article div.cntt h3 {color:#000000;font-size:24px;font-weight:500;line-height:27px;margin-bottom:20px;max-height:81px;overflow:hidden;}
+.blog.list article div.cntt a {text-decoration:none;color:#000000;}
+.blog.list article div.cntt .viewauthor {/*opacity:0.75;*/height:133px;margin-bottom:17px;/*overflow:hidden;*/}
+div.cntt .viewauthor> a:hover {color:#FF8700;}
+div.cntt .viewauthor a {text-decoration:none;}
+.authwrp a.goauthor:nth-child(1) {position:relative;left:0px;z-index:1;margin-right:5px;}
+.authwrp a.goauthor:nth-child(2) {position:absolute;left:-5px;z-index:2;transition-duration:250ms;transition-delay:0ms;}
+.authwrp a.goauthor:nth-child(3) {position:absolute;left:-10px;z-index:3;transition-duration:250ms;transition-delay:0ms;}
+.authwrp a.goauthor:nth-child(4) {position:absolute;left:-15px;z-index:4;transition-duration:250ms;transition-delay:0ms;}
+.authwrp a.goauthor:nth-child(5) {position:relative;left:-20px;z-index:5;transition-duration:250ms;transition-delay:0ms;}
+.authwrp.an a.goauthor:nth-child(1) {margin-right:0px;}
+.authwrp.an a.goauthor:nth-child(2) {position:relative;left:0px;transition-duration:250ms;transition-delay:0ms;}
+.authwrp.an a.goauthor:nth-child(3) {position:relative;left:0px;transition-duration:250ms;transition-delay:0ms;}
+.authwrp.an a.goauthor:nth-child(4) {position:relative;left:0px;transition-duration:250ms;transition-delay:0ms;}
+.authwrp.an .newau {display:none;}
+.authwrp a.goauthor:last-of-type {margin-right:5px;}
+div.cntt .viewauthor a.goauthor img {border:1px solid #fff;background-color:#fff;}
+div.cntt img.author {display:inline-block;width:32px;height:32px;border-radius:50%;overflow:hidden;background-color:#4a4a4a;margin-right:5px;}
+.blog.list article div.cntt a.tag, .blog.list .explor div.cntt a.tag {display:inline-block;white-space:nowrap;border-radius: 12px;background-color:#FF8700;text-decoration:none;text-transform:uppercase;float:left;padding:3px 14px;color:#FFFFFF;font-size:14px;line-height:18px;margin-bottom:20px;}
+.blog.list article div.cntt .ptagwrap, .blog.list .explor div.cntt .ptagwrap {display:block;width:100%;height:24px;overflow:hidden;white-space:nowrap;}
+.blog.list article div.cntt .ptag, .blog.list .explor div.cntt .ptag {display:block;width:10000px;height:24px;white-space:nowrap;}
+.blog.list article div.cntt .ptag a, .blog.list .explor div.cntt .ptag a {display:none;white-space:nowrap;border-radius: 12px;background-color:#FF8700;text-decoration:none;text-transform:uppercase;float:left;padding:3px 14px;color:#FFFFFF;font-size:14px;line-height:18px;margin:0px 5px 20px 0px;}
+.blog.list article div.cntt .ptag a[href="/tag/big-data/"], .blog.list article div.cntt .ptag a[href="/tag/search/"], .blog.list article div.cntt .ptag a[href="/tag/test-automation/"], .blog.list article div.cntt .ptag a[href="/tag/data-science/"], .blog.list article div.cntt .ptag a[href="/tag/machine-learning-and-artificial-intelligence/"], .blog.list article div.cntt .ptag a[href="/tag/user-interface/"], .blog.list article div.cntt .ptag a[href="/tag/mobile/"], .blog.list article div.cntt .ptag a[href="/tag/e-commerce/"] {display:inline-block;}
+.blog.list .explor div.cntt .ptag a[href="/tag/big-data/"], .blog.list .explor div.cntt .ptag a[href="/tag/search/"], .blog.list .explor div.cntt .ptag a[href="/tag/test-automation/"], .blog.list .explor div.cntt .ptag a[href="/tag/data-science/"], .blog.list .explor div.cntt .ptag a[href="/tag/machine-learning-and-artificial-intelligence/"], .blog.list .explor div.cntt .ptag a[href="/tag/user-interface/"], .blog.list .explor div.cntt .ptag a[href="/tag/mobile/"], .blog.list .explor div.cntt .ptag a[href="/tag/e-commerce/"] {display:inline-block;}
+
+.blog.list article.an2 figure {max-height:none!important;min-height:430px;height:auto!important;transition-duration:150ms;}
+.blog.list article.an2 div.cntt {max-height:none!important;min-height:230px;height:auto!important;transition-duration:150ms;}
+.blog.list article.an2 div.cntt .viewauthor {max-height:none!important;min-height:133px;height:auto!important;transition-duration:150ms;}
+.blog.list article.an2 div.cntt h3 {max-height:none!important;height:auto!important;transition-duration:150ms;}
+
+.authwrp {position:relative;}
+.authwrp.padded2 {left:5px;}
+.authwrp.padded3 {left:10px;}
+.authwrp.padded4 {left:15px;}
+/* TOOLTIPS */
+@media (min-width: 960px) {
+	.ttip {
+	  -webkit-transform: translateY(10px);
+		 -moz-transform: translateY(10px);
+		  -ms-transform: translateY(10px);
+		   -o-transform: translateY(10px);
+			  transform: translateY(10px);
+	  -webkit-transition: all .25s ease-out;
+		 -moz-transition: all .25s ease-out;
+		  -ms-transition: all .25s ease-out;
+		   -o-transition: all .25s ease-out;
+			  transition: all .25s ease-out;
+	  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+		 -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+		  -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+		   -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+			  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+	}
+	/* POST CARD'S AUTHORS TOOLTIPS */
+	.authwrp.padded2.an, .authwrp.padded3.an, .authwrp.padded4.an {left:0px;}
+	.authwrp .ttip {background: #FF8700;bottom: 100%;color: #fff;display: block;left: -25px;margin-bottom: 15px;opacity: 0;font-size:16px;line-height:24px;padding: 10px 20px;z-index:20;pointer-events: none;position: absolute;width: 200px;}
+	.authwrp .ttip:before {bottom: -20px;content: " ";display: block;height: 20px;left: 0;position: absolute;width: 100%;}  
+	.authwrp .ttip:after {border-left: solid transparent 10px;border-right: solid transparent 10px;border-top: solid #FF8700 10px;bottom: -10px;content: " ";height: 0;left: 50%;margin-left: -50px;position: absolute;width: 0;}
+	.authwrp.an .ttip {opacity: 1;pointer-events: auto;-webkit-transform: translateY(0px);-moz-transform: translateY(0px);-ms-transform: translateY(0px);-o-transform: translateY(0px);transform: translateY(0px);}
+	
+	/* HEDAER TOOLTIPS */
+	#hero .area  {display:none!important;}
+	#hero .area .ttip {background: #36363699;bottom:45%;color: #fff;display: block;right:100%;margin-bottom: 15px;opacity: 0;font-size:16px;line-height:24px;font-size:16px;line-height:24px;padding: 10px 20px;z-index:20;pointer-events:none;position:absolute;width:200px;border-radius:6px;}
+	.tag-template.tag-machine-learning-and-artificial-intelligence #hero .area .ttip {bottom:40%;right:100%;width:220px;}
+	.tag-template.tag-machine-learning-and-artificial-intelligence #hero .area .ttip2 {bottom:70%;right:50%;}
+	.tag-template.tag-mobile #hero .area .ttip {bottom: 40%;right:110%;width:220px;}
+	.tag-template.tag-mobile #hero .area .ttip2 {bottom: 75%;right:60%;}
+	.tag-template.tag-in-stream-processing-series #hero .area .ttip {right:140%;width:230px;bottom:60%;}
+	.tag-template.tag-continuous-performance-testing #hero .area .ttip {right:100%;width:230px;bottom:60%;}
+	.tag-template.tag-implementing-autocomplete-with-solr-series #hero .area .ttip {right:70%;width:250px;bottom:50%;}
+	.tag-template.tag-image-search-series #hero .area .ttip {right:40%;width:230px;bottom:55%;}
+	.tag-template.tag-data-science-toolkit-series #hero .area .ttip {right:90%;width:230px;bottom:75%;}
+	.tag-template.tag-deploying-in-stream-processing #hero .area .ttip {right:80%;width:230px;bottom:80%;}
+	.home-template #hero .area .ttip {bottom: 70%;right:85%;}
+	.home-template #hero .area .ttip2 {bottom:70%;right:-22%;width:310px;}
+	.home-template #hero .area .ttip3 {bottom: 43%;right:-20%;width:230px;}
+	.home-template #hero .area .ttip4 {bottom: 25%;right:100%;}
+	.home-template #hero .area .ttip5 {bottom: 10%;right:25%;}
+	#hero .area .ttip:before {bottom: -20px;content: " ";display: block;height: 20px;left: 0;position: absolute;width: 100%;}
+	#hero .area .ttip:after {content:" ";position:absolute;top:50%;left:100%;margin-top:-10px;border-width:10px;border-style:solid;border-color:transparent transparent transparent #36363699;}	  
+	#hero .area .ttip2:after {content:" ";position:absolute;top:50%;left:-20px;margin-top:-10px;border-width:10px;border-style:solid;border-color:transparent #36363699 transparent transparent;}	  
+	#hero .area .ttip3:after {content:" ";position:absolute;top:50%;left:-20px;margin-top:-10px;border-width:10px;border-style:solid;border-color:transparent #36363699 transparent transparent;}	  
+	#hero .area:hover .ttip {opacity: 1;pointer-events: auto;-webkit-transform: translateX(0px);-moz-transform: translateX(0px);-ms-transform: translateX(0px);-o-transform: translateX(0px);transform: translateX(0px);}
+	
+	.tag-template.tag-machine-learning-and-artificial-intelligence #hero .area .ttip2:after {left:100%;border-color:transparent transparent transparent #36363699;}
+	.tag-template.tag-mobile #hero .area .ttip2:after {left:100%;border-color:transparent transparent transparent #36363699;}
+	
+	.tag-template.tag-in-stream-processing .area {position:absolute;right:230px;width:230px;height:220px;z-index:5;background:transparent;}
+	.tag-template.tag-continuous-performance-testing .area {position:absolute;right:130px;width:230px;height:220px;z-index:5;background:transparent;}
+	.tag-template.tag-implementing-autocomplete-with-solr-series .area {position:absolute;right:130px;width:330px;height:420px;z-index:5;background:transparent;}
+	.tag-template.tag-image-search-series .area {position:absolute;right:0px;width:430px;height:420px;z-index:5;background:transparent;}
+	.tag-template.tag-data-science-toolkit-series .area {position:absolute;right:0px;width:330px;height:420px;z-index:5;background:transparent;}
+	.tag-template.tag-deploying-in-stream-processing .area {position:absolute;right:110px;width:330px;height:420px;z-index:5;background:transparent;}
+	.tag-template.tag-big-data .area {position:absolute;right:230px;width:200px;height:220px;z-index:5;background:transparent;}
+	.tag-template.tag-test-automation .area {position:absolute;right:150px;width:250px;height:220px;z-index:5;background:transparent;}
+	.tag-template.tag-e-commerce .area {position:absolute;right:150px;width:250px;height:220px;z-index:5;background:transparent;}
+	.tag-template.tag-user-interface .area {position:absolute;right:240px;width:250px;height:220px;z-index:5;background:transparent;}
+	.tag-template.tag-data-science .area {position:absolute;right:200px;width:250px;height:220px;z-index:5;background:transparent;}
+	.tag-template.tag-machine-learning-and-artificial-intelligence .area {position:absolute;right:50px;width:350px;height:280px;z-index:5;background:transparent;}
+	.tag-template.tag-mobile .area {position:absolute;right:100px;width:350px;height:280px;z-index:5;background:transparent;}
+    .tag-template.tag-search .area {position:absolute;right:150px;width:200px;height:220px;z-index:5;background:transparent;}
+    .home-template .area {position:absolute;right:100px;width:500px;height:250px;z-index:5;background:transparent;}
+	
+}
+.allseries #homeseries .hr.clearfix {display:none;}
+.blog.list .serieswrap {max-height:500px;}
+.blog.list goslick .serieswrap {overflow:hidden;}
+.blog.list .serieswrap article.series {margin:20px 25px 70px 5px;}
+.blog.list article.series figure {background-color: #fff;position: relative;padding:0px;overflow:visible;}
+.tag-template .blog.list article.series {margin:0px 45px 70px 0px;}
+.blog.list article.series div.cntt a.tag {display:none;}
+.blog.list article.series.continuous-performance-testing div.cntt a.tag.qa {display:block;}
+.blog.list article.series.introduction-to-augmented-reality div.cntt a.tag.ecommerce {display:block;}
+.blog.list article.series.data-science-toolkit-series div.cntt a.tag.ds {display:block;}
+.blog.list article.series.deploying-in-stream-processing div.cntt a.tag.bd {display:block;}
+.blog.list article.series.in-stream-processing-series div.cntt a.tag.bd {display:block;}
+.blog.list article.series.implementing-autocomplete-with-solr-series div.cntt a.tag.search {display:block;}
+.blog.list article.series.advanced-solr-lucene-topics-nested-search-for-e-commerce-applications div.cntt a.tag.search {display:block;}
+.blog.list article.series.image-search-series div.cntt a.tag.mlai {display:block;}
+.blog.list article.series.algorithmic-pricing div.cntt a.tag.mlai {display:block;}
+.blog.list article.series.algorithmic-pricing div.cntt a.tag.ds {display:block;}
+.blog.list article.series:nth-of-type(3n) {margin-right:25px!important;}
+.tag-template .blog.list #secondlist article:nth-of-type(3n) {margin-right:0px!important;}
+.blog.list article.series figure, .blog.list article.series figure::before, .blog.list article.series figure::after {box-shadow: 2px 1px 1px rgba(0,0,0,0.15);}
+.blog.list article.series figure::before, .blog.list article.series figure::after {content: "";position: absolute;width: 100%;height: 100%;background-color: #eee;}
+.blog.list article.series figure::before {left:7px;top:5px;z-index:-1;}
+.blog.list article.series figure::after {left:12px;top:10px;z-index:-2;}
+.blog.list article.series.an2 figure::before {left:12px;top:10px;z-index:-1;}
+.blog.list article.series.an2 figure::after {left:22px;top:20px;z-index:-2;}
+.blog.list article.series.an2 figure {box-shadow:none;transform:none;transition-delay: 0s !important;position:relative;top:-10px;box-shadow:0 28px 16px 0 rgba(0,0,0,0.16);}
+
+
+.blog.list article.series.continuous-performance-testing a.img {background: url(/assets/css/series-blog_banner_black_continuous_performance_testing_v3_approved.jpg) center right no-repeat!important;background-size: cover!important;}
+.blog.list article.series.introduction-to-augmented-reality a.img {background: url(/assets/css/series-blog_banner_black_ar_approved.jpg) center right no-repeat!important;background-size: cover!important;}
+.blog.list article.series.data-science-toolkit-series a.img {background: url(/assets/css/series-blog_banner_black_data_science_toolkit_v3_approved.jpg) center right no-repeat!important;background-size: cover!important;}
+.blog.list article.series.deploying-in-stream-processing a.img {background: url(/assets/css/blog_banner_black_deploying_ISP_v5.jpg) center right no-repeat!important;background-size: cover!important;}
+.blog.list article.series.in-stream-processing-series a.img {background: url(/assets/css/series-blog_banner_black_ISP_v3_approved.jpg) center right no-repeat!important;background-size: cover!important;}
+.blog.list article.series.implementing-autocomplete-with-solr-series a.img {background: url(/assets/css/series-blog_banner_black_autocomplete_approved.jpg) center right no-repeat!important;background-size: cover!important;}
+.blog.list article.series.advanced-solr-lucene-topics-nested-search-for-e-commerce-applications a.img {background: url(/assets/css/blog_banner_black_nested_search_review.jpg?t=1) center right no-repeat!important;background-size: cover!important;}
+.blog.list article.series.image-search-series a.img {background: url(/assets/css/series-blog_banner_black_image_search_approved.jpg) center right no-repeat!important;background-size: cover!important;}
+
+.blog.list article.latest {}
+.blog.list article.latest .img {height:200px;}
+.blog.list article.latest div.cntt {max-height:230px;}
+.blog.list article.latest div.cntt .viewauthor {max-height:150px;}
+
+#wrap > article.featured {display:none;}
+.blog.list article.featured figure {width:370px;height:430px;overflow:visible;position:relative;}
+article.featured.postid5b0daab8c3574600bf6e952a figure {background:url(/assets/css/ml-powered-image-search.png) top center no-repeat!important;background-size:cover!important;}
+.blog.list article.featured fade {background-color:#0008;}
+.blog.list article.featured .featwrap {width:386px;height:446px;overflow:hidden;position:relative;left:-8px;top:-8px;border:8px solid #FF8700;}
+.blog.list article.featured  div.cntt {padding-top:180px;color:#fff;max-height:430px;}
+.blog.list article.featured  div.cntt .viewauthor {opacity:1;}
+.blog.list article.featured  div.cntt a, .blog.list article.featured div.cntt h3 {color:#fff;}
+.blog.list article.featured  div.cntt > span:first-of-type {display:block;margin-bottom:20px;color:#FF8700;padding:4px 0px;text-transform:uppercase;font-size:24px;font-weight:bold;line-height:20px;}
+
+
+.blog.list article.tagcloud {padding:0px;box-shadow:none;overflow:hidden;text-align:left;}
+.blog.list article.tagcloud:hover {box-shadow:none;transform:none;transition-delay:none;height:430px;}
+.blog.list article.tagcloud a {display:inline-block;white-space:nowrap;padding:2px 6px;background-color:#4a4a4a;color:#fff;text-decoration:none;text-transform:uppercase;font-size:14px;line-height:16px;border-radius:6px;margin:0px 5px 5px 0px;}
+.blog.list article.tagcloud .tag2 {background-color:#6e6e6e;}
+.blog.list article.tagcloud .tag3 {background-color:#c6c6c6;}
+.blog.list article.tagcloud .tag0 {background-color:#dedede;}
+
+
+hr.hr {opacity:0.75;text-align:left;padding-bottom:0px;margin:0px 0px 60px;border-bottom:2px solid #cccccc;}
+.blog.list div.hr {text-align:left;padding-bottom:20px;margin-bottom:42px;border-bottom:2px solid rgba(204,204,204,0.75);}
+#homeseries .blog.list div.hr {margin-bottom:22px;}
+.blog.list div.hr h3 {float:left;color: #4A4A4A;font-size:32px;font-weight:500;line-height:32px;margin:0px;}
+.blog.list div.hr .more {float:right;font-size:19px;line-height:32px;color: #4A4A4A;text-decoration:none;cursor:pointer;padding-right: 20px;background: url(https://grid-dynamics-blog.ghost.io/assets/css/small_left.svg) right 60% no-repeat;}
+.blog.list div.hr .more:hover {color:#FF8500;}
+
+.blog.list #ajaxmore {cursor:pointer;display:block;text-align:center;width:120px;color: #FF8500;font-size: 21px;line-height: 27px;margin:0px auto 40px;position:relative;top:0px;}
+.blog.list #ajaxmore span {display:block;font-weight:300;font-size:46px;line-height:36px;height:36px;width:36px;color:#fff;background-color:#FF8500;overflow:hidden;border-radius:50%;margin:10px auto;}
+.blog.list #ajaxmore:hover {top:-10px;-webkit-transition: all 450ms cubic-bezier(.02, .01, .47, 1);
+    -moz-transition: all 450ms cubic-bezier(.02, .01, .47, 1);
+    transition: all 450ms cubic-bezier(.02, .01, .47, 1);}
+.blog.list #ajaxmore:hover span {box-shadow: 0 20px 20px rgba(0,0,0,.08);}
+/*.blog.list #ajaxmore:hover {color: #aaa;}
+.blog.list #ajaxmore:hover span {background-color:#aaa;}*/
+
+body.author-template {height: 100vh;overflow: hidden;}
+#author {background:rgba(255,255,255,0.9);position:fixed;left:0px;right:0px;top:0px;bottom:0px;width:100%;height:100%;z-index:1000;padding-top:20px;text-align:center;}
+#author .inner2 {}
+#author #authorbox {margin:0px auto;background:#fff;box-shadow:0 8px 32px 0 rgba(0,0,0,0.16);width:944px;padding:34px;height:auto;max-height:100%;overflow-y:auto;}
+#author #authorbox div.left {width:170px;padding-top:40px;}
+#author #authorbox div.left img {display:inline-block;width:150px;height:150px;border-radius:50%;overflow:hidden;/*background-color:#4a4a4a;*/margin-right:5px;}
+#author #authorbox div.right {width:675px;text-align:left;}
+#author #authorbox div.right p.nav {font-size:17px;font-weight:300;line-height: 20px;margin-bottom:28px;}
+#author #authorbox div.right p.nav a {text-decoration:none;color:#4a4a4a;font-weight:600;}
+#author #authorbox div.right p.nav a:hover {color:#FF8500;}
+#author #authorbox div.right h1 {font-size: 32px;font-weight:600;line-height: 40px;}
+#author #authorbox div.right h2 {font-size: 24px;font-weight:400;line-height: 31px;margin-bottom:10px;}
+#author #authorbox div.right p {font-size:17px;font-weight:400;line-height:22px;margin-bottom:20px;}
+#author #authorbox h3 {padding-left:200px;font-size: 24px;line-height: 31px;text-align:left;margin-bottom:21px;}
+.postlist a {clear:both;text-decoration:none;color:#4a4a4a;font-size: 17px;font-weight:600;line-height: 24px;display:block;text-align:left;margin-bottom:10px;}
+.postlist a span {display:inline-block;float:left;vertical-align:top;width:200px;font-weight:300;margin-bottom:10px;padding-right:30px;text-align:right;}
+.author-template .closeauthor {cursor:pointer;height: 20px;width: 20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/close.svg') center no-repeat;}
+.newclose {display:block;cursor:pointer;height: 20px;width: 20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/close.svg') center no-repeat;}
+
+body.page-all-authors .authorslist .inner {overflow:hidden;}
+#authorflatlist {float:right;width:200px;position:relative;z-index:20;background:#fff;box-shadow:0 8px 16px 0 rgba(0,0,0,0.16);width:245px;margin-top:20px;padding:7px 0px 20px 0px;text-align:left;}
+#authorflatlist h4 {margin-bottom:10px;padding:0px 20px 8px;font-size:19px;font-weight:600;line-height:36px;border-bottom:2px solid rgba(204,204,204,.75)}
+#authorflatlist a {text-decoration:none;color:#4a4a4a;font-size: 19px;font-weight:400;line-height:36px;display:block;padding:0px 20px;margin-bottom:10px;}
+#authorflatlist .scrollable {height:calc(100vh - 328px);/*padding-bottom:140px;*/overflow-y:scroll;}
+#authorflatlist .scrollable::-webkit-scrollbar {-webkit-appearance: none;}
+#authorflatlist .scrollable::-webkit-scrollbar:vertical {width: 12px;}
+#authorflatlist .scrollable::-webkit-scrollbar:horizontal {height: 12px;}
+#authorflatlist .scrollable::-webkit-scrollbar-thumb {background-color: rgba(0, 0, 0, .5);border-radius:10px;border: 2px solid #ffffff;}
+#authorflatlist .scrollable::-webkit-scrollbar-track {border-radius:10px;background-color:#ffffff;}
+
+
+.authortitle {text-align:left;font-size: 36px;	font-weight: bold;	line-height: 36px;margin-bottom:35px;width:960px;}
+.single {width:940px;text-align:left;padding-bottom:70px;padding-top:70px;border-bottom:2px solid rgba(204,204,204,.75);}
+.single:last-of-type {border-bottom:0px solid rgba(204,204,204,.75)}
+.single.first {border-top:2px solid rgba(204,204,204,.75);padding-top:20px;}
+.single div.left1 {width:180px;padding-top:0px;margin-bottom:15px;}
+.single div.left1 img {display:inline-block;width:150px;height:150px;border-radius:50%;overflow:hidden;/*background-color:#4a4a4a;*/margin-right:5px;}
+.single div.left2 {width:760px;margin-bottom:15px;}
+.single div.left2 h2 {font-size: 32px;	font-weight: bold;	line-height: 40px;}
+.single div.left2 p.job {font-size: 24px;line-height: 31px;margin-bottom:10px;}
+.single div.left2 a.email {font-size:17px;line-height: 22px;text-decoration:none;color:#4a4a4a;}
+.single div.left2 .authorsocial a {margin-right:10px;}
+.single h3 {padding-left:180px;font-size: 24px;line-height: 31px;text-align:left;margin-bottom:21px;}
+.single .postlist a {}
+.single .postlist a span {width:180px;}
+.single a.authormore {padding-left:180px;padding-top:15px;text-decoration:none;color:#FF8500;font-size:21px;line-height:27px;}
+
+.blog.post {padding:50px 0px 0px;background:#fff;}
+.blog.post #share {width:160px;min-height:10px;float:left;}
+.blog.post #postcontent {width:876px;float:left;text-align:left;font-size:19px;line-height:24px;}
+.blog.post #postcontent h1 {font-size: 36px;font-weight: bold;line-height: 36px;margin-bottom:30px;}
+.blog.post #postcontent .postauthor {font-size: 15px;line-height: 32px;margin-bottom:10px;color:#000;}
+.blog.post #postcontent .postauthor a {color:#000;text-decoration:none;}
+.blog.post #postcontent .postauthor a.goauthor {display:inline-block;vertical-align:top;width:70px;text-align:center;margin-right:20px;}
+.blog.post #postcontent .postauthor a.goauthor:last-of-type {display:inline-block;margin-right:20px;}
+.blog.post #postcontent .postauthor a.goauthor span {display:inline-block;line-height:19px;}
+.blog.post #postcontent .postauthor img {display:block;width:64px;height:64px;border-radius:50%;overflow:hidden;/*background-color:#4a4a4a;*/margin:0px auto 5px;}
+.blog.post #postcontent a.tag.secondary {display:inline-block;margin-right:10px;border-radius: 12px;background-color:#cccccc;text-decoration:none;text-transform:uppercase;padding:3px 14px;color:#FFFFFF;font-size: 14px;line-height: 18px;}
+.blog.post #postcontent .posttag.nomobile {text-align:right;}
+.blog.post #postcontent .posttag.mobile {margin-bottom:20px;}
+.blog.post #postcontent .posttag.mobile::after {content:'';display:block;clear:both;}
+.blog.post #postcontent .posttag a {display:block;border-radius: 12px;background-color:#FF8700;text-decoration:none;text-transform:uppercase;float:left;padding:3px 14px;margin-left:10px;color: #FFFFFF;font-size: 14px;line-height:18px;}
+.blog.post #postcontent hr.hr {display:block;}
+.blog.post #postcontent #comments {margin-bottom:70px;}
+.blog.post #postcontent #comments h4 {font-size:27px;font-weight:bold;line-height:34px;margin-bottom:20px;color:#FF8700;}
+/*.blog.post #postcontent #comments div {border:1px solid #CCCCCC;border-radius: 4px;background-color: #FFFFFF;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12);height:80px;width:876px;}*/
+
+.blognav{margin-bottom:30px;padding:25px 0px;background-color:#FFFFFF;box-shadow:0 8px 32px 0 rgba(0,0,0,0.16);}
+.blognav .half {width:50%;}
+.blognav .inside  {max-width:720px;}
+.blognav .left.half  {border-right:2px solid rgba(204,204,204,.75);}
+.blognav .left .inside  {margin-right:101px;}
+.blognav .right .inside  {margin-left:101px;}
+.blognav .left .inside a  {padding-left:50px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/prev.svg') center left no-repeat transparent;}
+.blognav .right .inside a  {padding-right:50px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/next.svg') center right no-repeat transparent;}
+.blognav .inside small {display:block;max-width:500px;font-size: 14px;font-weight: 300;line-height: 18px;text-align: center;margin-bottom:15px;}
+.blognav .inside a {display:block;max-width:450px;color:#4a4a4a;text-decoration:none;font-size: 20px;font-weight: bold;line-height: 25px;text-align:center;margin-bottom:10px;}
+.blognav .inside a:hover {color:#FF8700;}
+.blognav .inside span {font-size: 15px;	font-weight: 300;line-height: 19px;text-align: center;}
+
+.inner.ctas {max-width:860px;padding-bottom:30px;}
+.ctas .left, .ctas .right {width:50%;text-align:left;}
+.ctas .left {padding-right:15px;}
+.ctas .right {padding-left:15px;}
+.ctas .left a, .ctas .right a {display:block;margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid rgba(204,204,204,.75);color:#4a4a4a;text-decoration:none;}
+.ctas .left a:last-of-type, .ctas .right a:last-of-type {border-bottom:0px solid rgba(204,204,204,.75);}
+.ctas .left a b, .ctas .right a b {margin-bottom:12px;font-size:17px;line-height:20px;}
+.ctas .left a:hover b, .ctas .right a:hover b {color:#FF8700;}
+.ctas .left a span, .ctas .right a span {display:block;}
+.ctas h4 {font-size: 32px;font-weight:900;line-height:40px;padding-bottom:20px;margin-bottom:30px;border-bottom:2px solid rgba(204,204,204,.75);}
+
+
+#mypost {}
+#mypost h1 {font-size:36px;font-weight:600;line-height:48px;margin:0px 0px 20px;padding:0px;}
+#mypost h2 {font-size:32px;font-weight:600;line-height:40px;margin:5px 0px 15px;padding:0px;}
+#mypost h3 {font-size:24px;font-weight:400;line-height:31px;margin:0px 0px 20px;padding:0px;}
+#mypost h4 {font-size:19px;font-weight:600;line-height:24px;margin:0px 0px 20px;padding:0px;}
+#mypost h5 {font-size:32px;font-weight:600;line-height:40px;margin:0px 0px 20px;padding:0px;}
+#mypost h6 {font-size:27px;font-weight:bold;line-height:34px;margin:0px 0px 20px;padding:0px;}
+#mypost a {color:#FF8700;text-decoration:none;}
+#mypost a:hover {color:#4a4a4a;text-decoration:underline;}
+#mypost a:visited {color:#b8bbbb;text-decoration:underline;}
+#mypost ul {margin:8px 0px 16px;padding:0px;}
+#mypost ul li {margin:0px 0px 8px;padding-left:20px;text-indent:-.3em;line-height:26px;}
+#mypost ul li::before {content:"•";color:#FF8700;position:relative;left:-12px;}
+#mypost ul li ul {margin:20px 0px 20px 30px;}
+#mypost ul li ul li ul {margin:20px 0px 20px 30px;}
+#mypost ol {margin:8px 0px 16px;padding:0px 0px 0px 30px;list-style:decimal outside;}
+#mypost ol li {margin:0px 0px 8px;padding:0px;line-height:26px;}
+#mypost p {margin-bottom:20px;line-height:26px;}
+#mypost p.caption {text-align:center;}
+#mypost b, #mypost strong {font-weight:600;}
+#mypost em, #mypost i {font-style:italic;}
+#mypost u {text-decoration:underline;}
+#mypost img {display:block;margin:0px auto 20px;max-width:100%!important;}
+#mypost table {margin-bottom:20px;width:100%;border-collapse:collapse;border:0px;}
+#mypost table tr {border-bottom:1px solid #ccc;}
+#mypost .gist table tr {border-bottom:0px solid #ccc;}
+#mypost table tr td {padding:6px 14px;}
+#mypost table thead td {font-weight:600;}
+#mypost table thead th {padding:6px 14px;}
+#mypost table .bottom {vertical-align:bottom;}
+#mypost table .bold {font-weight:600;}
+#mypost table .small {font-weight:600;font-size:15px;}
+#mypost table .green1 {background:#c9e9ad;}
+#mypost table .red1 {background:#ffbdb2;}
+#mypost table.boxed {margin-bottom:20px;width:100%;border-collapse:collapse;border:1px solid #333;}
+#mypost table.boxed tr {border-bottom:0px solid #ccc;}
+#mypost table.boxed tr td {padding:6px 14px;border:1px solid #333;}
+#mypost table.boxed th {border:1px solid #333;}
+#mypost code, #mypost pre{font-size:18px;line-height:24px;color:#436ab3;background:#F2E8D0;padding:12px;font-family:monospace;display:block;margin-bottom:24px;-ms-word-break: break-all;word-break: break-all;word-break: break-word;text-indent:0px;white-space:pre-wrap;}
+#mypost .code3{font-size:18px;line-height:24px;color:#436ab3;background:#F2E8D0;padding:12px;font-family:monospace;display:block;margin-bottom:24px;-ms-word-break: break-all;word-break: break-all;word-break: break-word;text-indent:0px;}
+#mypost .code3 ul, #mypost .code3 ol, #mypost .code3 li {    text-indent: -1.6em;}
+#mypost .code{font-size:18px;line-height:22px;color:#436ab3;font-family:monospace!important;-ms-word-break: break-all;word-break: break-all;word-break: break-word;}
+#mypost .code .cp1, #mypost pre .cp1 {color:#000080;}
+#mypost .code .cp2, #mypost pre .cp2 {color:#20999D;}
+#mypost .code .cp3, #mypost pre .cp3 {color:#999999;}
+#mypost h4 .code{font-size:21px;line-height:22px;color:#436ab3;font-family:monospace!important;-ms-word-break: break-all;word-break: break-all;word-break: break-word;}
+#mypost code.code2{font-size:14px;-ms-word-break: break-all;word-break: break-all;word-break: break-word;}
+#mypost .yellowsnippet {font-size:18px;line-height:24px;background-color:#F2E8D0;padding:15px;margin-bottom:4px;}
+#mypost .yellowsnippet.yellowsnippet2 {color:#222;}
+#mypost .yellowsnippet .pink, #mypost code .pink {color:#BA2DA2;}
+#mypost .yellowsnippet .blue, #mypost code .blue {color:#004BFF;}
+#mypost .yellowsnippet .green1, #mypost code .green1 {color:#2C848E;}
+#mypost .yellowsnippet .green2, #mypost code .green2 {color:#1D5A5E;}
+#mypost .yellowsnippet .violet, #mypost code .violet {color:#3E1E81;}
+#mypost .yellowsnippet .grey, #mypost code .grey {color:#aaa;}
+#mypost .yellowsnippet .red, #mypost code .red {color:red;}
+#mypost .yellowsnippet .bold, #mypost code .bold {font-weight:600;}
+#mypost .yellowsnippet .em {font-style:italic;}
+
+#mypost .resptab {width:100%;overflow-x:scroll;white-space:nowrap;}
+#mypost .resptab::-webkit-scrollbar {    -webkit-appearance: none;}
+#mypost .resptab::-webkit-scrollbar:vertical {   width: 12px;}
+#mypost .resptab::-webkit-scrollbar:horizontal {    height: 12px;}
+#mypost .resptab::-webkit-scrollbar-thumb {    background-color: rgba(0, 0, 0, .5);    border-radius: 10px;    border: 2px solid #ffffff;}
+#mypost .resptab::-webkit-scrollbar-track {   border-radius: 10px;      background-color: #ffffff; }
+
+
+.prefooter {clear:both;width:100%;	background-color: #FFFFFF;	box-shadow: 0 8px 32px 0 rgba(0,0,0,0.16);height:96px;}
+.prefooter .inner {padding:36px 0px;}
+.prefooter p {text-align:center;color:#000000;font-family:"Source Sans Pro";font-size:24px;line-height:24px;text-align:center;}
+.prefooter p span {opacity:0.75;}
+.prefooter p a#subscribe{border-radius:18px;background-color: #FF8500;color:#ffffff;text-decoration:none;font-size:14px;font-weight:400;line-height:24px;padding:9px 28px;text-transform:uppercase;cursor:pointer;opacity:1;margin-left:40px;}
+.prefooter p a#subscribe:hover{opacity:0.8;}
+
+footer {clear:both;width:100%;height:80px;}
+footer .inner {padding:30px 0px;color:#4A4A4A;font-family:"Source Sans Pro";font-size:15px;line-height:24px;}
+footer p.left {margin-right:20px;}
+footer a.left, footer p.right a {margin-right:20px;text-decoration:none;color:#4A4A4A;}
+footer a.left:hover, footer p.right a:hover {color:#FF8700;}
+footer p.right {margin-right:20px;}
+footer ul.social2 {margin:0px;padding:0px;text-align:left;}
+footer ul.social2 li {display:inline-block;verticaL-align:top;margin-right:10px;}
+footer ul.social2 li.facebook a {display:inline-block;margin:0px 10px 0px 0px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/facebook.svg') center no-repeat;}
+footer ul.social2 li.twitter a {display:inline-block;margin:0px 10px 0px 0px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/twitter.svg') center no-repeat;}
+footer ul.social2 li.linkedin a {display:inline-block;margin:0px 10px 0px 0px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/linkedin.svg') center no-repeat;}
+footer ul.social2 li.youtube a, a.youtube {display:inline-block;margin:0px 10px 0px 0px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/youtube.svg') center no-repeat;}
+
+#mypost a.fancybox {position:relative;display:block;margin:0px auto;}
+
+a.fancybox b.imgshare {position:absolute;top:0px;display:block;width:32px;text-align:center;height:32px;line-height:28px;-webkit-transition: all 0.6s ease-in-out;-moz-transition: all 0.6s ease-in-out;-o-transition: all 0.6s ease-in-out;transition: all 0.6s ease-in-out;}
+a.fancybox b.imgshare svg {fill:#fff;}
+a.fancybox b.imgshare:hover {opacity:0.8;}
+a.fancybox b#imgshare1 {background:#0077b5;}
+a.fancybox b#imgshare2 {background:#3B5998;}
+a.fancybox b#imgshare3 {background:#55acee;}
+
+#share2 div.st-btn {display: block;display: block!important;width: 32px;margin: 2px auto 8px!important;    float: none;}
+a.addthis_native_counter_parent {display: block;}
+a.addthis_native_counter_parent .addthis_counter {display:none!important;}
+a.addthis_native_counter_parent:first-of-type .addthis_counter {display:block;}
+a.addthis_native_counter_parent:first-of-type {padding-top:0px;}
+span.at-icon-wrapper {border-radius:50%;}
+
+#explrlst .inner {width:1000px;}
+.explor {width:100%;min-height:200px;clear:both;margin-bottom:60px;}
+.explor:after {content:' ';display:block;clear:both;}
+.explor .img {display:block;width:350px;height:200px;margin-right:60px;background:#4a4a4a;float:left;background-size: cover!important;}
+.explor .cntt {display:block;width:590px;float:left;padding:20px 0px;text-align:left;}
+.explor .cntt h4 {margin-bottom:15px;}
+.explor .cntt h4 a {color:#000;font-size: 24px;font-weight:600;line-height:24px;text-decoration:none;margin-bottom:15px;}
+.explor .cntt h4:hover a {color:#FF8700;}
+.explor div.cntt img.author {display:inline-block;width:32px;height:32px;border-radius:50%;overflow:hidden;background-color:#4a4a4a;margin-right:5px;}
+.explor div.cntt .authwrp a {text-decoration:none;color:#000;}
+.explor div.cntt div a:hover {color:#FF8700;}
+.explor div.cntt a.tag {display:block;clear:both;border-radius: 12px;background-color: #FF8700;text-decoration:none;text-transform:uppercase;float:left;padding:3px 14px;color: #FFFFFF;font-size: 14px;	line-height: 18px;}
+
+.filterbar {height:71px;background-color:#F2F2F2;color: #4A4A4A;font-size: 19px;	line-height: 24px;text-align:left;}
+.filterbar .filtersection {width:130px;margin-right:35px;display:inline-block;position:relative;padding-top:23px;height:71px;padding-left:25px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/droparrow.svg') left center no-repeat;}
+.filterbar > .inner > span  {display:inline-block;margin-right:80px;height:71px;padding-top:23px;vertical-align:top;}
+.filterbar .filtersection div {display:none;}
+.filterbar .filtersection > span {cursor:pointer;}
+.filterbar .filtersection > span b {display:inline-block;font-weight:400;width:130px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.filterbar .filtersection > span b.selmenot3 {color:#FF8700;}
+.filterbar .filtersection:hover div {display:block;z-index:1;position:absolute;top:70px;left:-15px;padding:0px 40px 15px;background-color:#F2F2F2;}
+.filterbar .filtersection:hover div span {display:block;margin-bottom:15px;white-space:nowrap;}
+.filterbar .filtersection:hover div span:hover {color:#FF8700;cursor:pointer;}
+.filterbar .filtersection span.current {color:#FF8700;}
+.filterbar #filter5 {margin-right:0px;}
+.filterbar #filter6 {float:right;color:#FF8700;margin-right:0px;}
+.filterbar.hidereset #filter6 span#reset {display:none;}
+.filterbar #filter6 {background:url('https://grid-dynamics-blog.ghost.io/assets/i/closeicon.png') left center no-repeat;background-size:18px;}
+.filterbar.hidereset #filter6 {background:none;}
+
+hr.footnotes-sep {display:none;}
+
+#explres p {margin:30px 0px 100px;font-size: 24px;line-height: 24px;}
+
+#preplayer {opacity:0.8;}
+#preplayer.go, #preplayer:hover {opacity:1;}
+#preplayer iframe#player, #preplayer iframe#playerhere {margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid #ccc9;}
+#postcontent > #preplayer iframe#player {margin-bottom:20px;padding-bottom:0px;border-bottom:0px solid #ccc9;}
+#firstlist iframe#player {width:100%;height:100%;}
+
+#leaveform1,#leaveform2,#searchform1{display:none;}
+#leaveform1,#leaveform2,#searchform1,#atgform2 {position: fixed;left: 0px;z-index: 99998;right: 0px;top: 0px;bottom: 0px;width: 100%;height: 100%;background:#ffffffa0;}
+.leaveform .myinner2 {position:absolute;left:50px;right:50px;top:50px;bottom:50px;background:#ffffff;box-shadow: 0 8px 32px 0 rgba(0,0,0,0.16);}
+.leaveform .myinner {text-align:center;position:absolute;background:#fff;top: 40%; left: 50%;transform: translate(-50%,-50%);width: 700px;padding:0px 50px; height:500px;}
+.leaveform .myinner img {display:block;margin:0px auto 35px;}
+.leaveform .myinner span.hh1 {height:auto;width:100%;color:#FF860b;font-family:"Source Sans Pro";font-size:28px;font-weight:300;line-height:60px;text-align: center;display:inline-block;margin-bottom:0px;}
+.leaveform .myinner p {color:#4a4a4a;font-family:"Source Sans Pro";font-size:24px;font-weight:400;line-height:31px;text-align:center;margin-bottom:40px;}
+.leaveform .myinner strong {font-weight:600;}
+
+.leaveform .myinner form .emailmenot0 {text-align:center;margin-bottom:25px;display:block;}
+.leaveform .myinner form .emailmenot0 input {border:0px;border:1px solid #ccc;width:245px;height:36px;display:inline-block;color:#4A4A4A;font-family:"Source Sans Pro";font-size:19px;line-height:36px;border-radius:4px;padding:0px 10px;margin:0px 12px;}
+
+.leaveform .myinner form .emailmenot1 {text-align:center;margin-bottom:44px;display:block; /*height:46px;line-height:72px;width:514px;padding:0px 56px;margin:0px auto 44px;display:block;background:url('https://grid-dynamics-blog.ghost.io/assets/css/ic_mail_outline_black_24px.svg') 26px center no-repeat #ffffff;*/}
+.leaveform .myinner form .emailmenot1 input.emailmenot2 {border:0px;border:1px solid #ccc;width:514px;height:36px;display:inline-block;color:#4A4A4A;font-family:"Source Sans Pro";font-size:19px;line-height:36px;border-radius:4px;padding:0px 10px;}
+.leaveform .myinner form .emailmenot0 input:focus, .leaveform .myinner form .emailmenot1 input:focus {box-shadow:0 4px 8px 0 rgba(0,0,0,0.12);}
+.leaveform .myinner form input:valid {border:1px solid #9b9b9b;}
+.leaveform .myinner form input::-webkit-input-placeholder {color:#9b9b9b;}
+.leaveform .myinner form input:-moz-placeholder {color:#9b9b9b;}
+.leaveform .myinner form input::-moz-placeholder {color:#9b9b9b;}
+.leaveform .myinner form input:-ms-input-placeholder {color:#9b9b9b;}
+.leaveform .myinner form input#sss {float:left;overflow:hidden;margin-left:42px;/*display:inline-block;*/vertical-align:top;box-sizing:content-box;border:0px;height:18px;width:164px;padding:13px 41px 16px 41px;color:#ffffff;text-transform:uppercase;background-color: #ff860b;margin-right:17px;font-size:14px;font-weight:bold;line-height:23px;text-align:center;border-radius:24px;}
+.leaveform .myinner form input#sss:hover{cursor:pointer;opacity:0.8;}
+
+.leaveform .myinner form a.closemenot{float:left;overflow:hidden;/*display:inline-block;*/vertical-align: top;box-sizing: content-box;border: 1px solid #9b9b9b;height: 18px;width: 140px;padding:8px 53px 20px 53px;;color: #4a4a4a;text-transform: uppercase;text-decoration: none;margin-right: 0px;border-radius: 24px;font-size: 14px;font-weight: bold;line-height: 16px;text-align: center;}
+.leaveform .myinner form a.closemenot:hover{cursor:pointer;background:#ffffff;color:rgb(250,102,13);}
+.leaveform .myinner2 a.closemenot2 {display:block;position:absolute;z-index:99999;right:30px;top:20px;cursor:pointer;width:18px;height:18px;/*background:url('https://grid-dynamics-blog.ghost.io/assets/i/xshape.svg') center no-repeat transparent;*/}
+.leaveform .myinner2 a.closemenot2::after, .leaveform .myinner2 a.closemenot2::before{position:absolute;top:9px;left:0px;content:'';display:block;width:30px;height:1px;background-color:#666;}
+.leaveform .myinner2 a.closemenot2::after{
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.leaveform .myinner2 a.closemenot2::before{
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+a.closemenot3 {display:block;position:absolute;z-index:99999;right:30px;top:20px;cursor:pointer;width:18px;height:18px;/*background:url('https://grid-dynamics-blog.ghost.io/assets/i/xshape.svg') center no-repeat transparent;*/}
+a.closemenot3::after, a.closemenot3::before{position:absolute;top:9px;left:0px;content:'';display:block;width:30px;height:1px;background-color:#666;}
+a.closemenot3::after{
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+a.closemenot3::before{
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+#mc_embed_signup .mc-field-group.input-group.mcradio input {display:inline-block;line-height:16px;vertical-align:top;margin-right:4px;margin-top:4px;}
+.newsubscr {display:inline-block!important;border-radius: 18px;background-color: #FF8500;color: #fff;text-decoration: none;font-size: 14px;font-weight: 400;
+    line-height: 24px;
+    padding: 9px 28px;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 1;
+	border:0px;
+	clear:none!important;
+    margin:0px 0px 0px  40px!important;}
+input.grabme {margin-left:20px;border-radius:6px;border:1px solid #aaa;padding:4px 8px;color:#484848;}
+
+.addthis_32x32_style .at-icon {width: 24px!important;height: 24px!important;line-height: 32px;}
+.addthis_toolbox a {margin-bottom:14px;}
+.addthis_toolbox a:hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+.newcta {position:absolute;right:-320px;top:-50px;}
+.newcta2 {position:absolute;right:-320px;top:-50px;text-align:center;text-decoration:none;color:#222;width:250px;overflow:hidden;border-radius:8px;box-shadow:0 8px 16px 0 rgba(0,0,0,0.16);font-weight:700;}
+.newcta2:hover {opacity:0.8;text-decoration:none!important;}
+.newcta2 img {display:block;margin-bottom:5px!important;width:100%;max-height:110px!important;object-fit:cover;}
+.newcta2 span {display:block;margin-bottom:5px;text-align:left;padding:0px 10px;color:#999;font-size:12px;}
+.newcta2 strong {display:block;margin-bottom:15px;text-align:left;padding:0px 10px;font-size:15px;font-weight:700;line-height:120%;min-height:55px;color:#000!important;}
+.newcta2 b {display:block;margin-bottom:5px;text-align:left;padding:0px 10px;line-height:24px;color:#999;font-size:12px;}
+.newcta2 b img {width:24px;height:24px;vertical-align:middle;margin-bottom:0px!important;margin-right:7px!important;display:inline-block!important;}
+.ctawrap {text-align:center;}
+
+.prefooter {top:auto!important;}
+.prefooter.static {position:static!important;}
+.prefooter.static #closefoot {display:none!important;}
+.prefooter.static + div {display:none!important;}
+#closefoot {height:20px;width: 20px;background: url(/assets/css/close.svg) center no-repeat;position:absolute;margin-top:-10px;top:50%;right:8px;z-index:2;}
+	
+@media (max-width: 1299px) {
+	.newcta2 {position:static;margin:20px 20px 40px;display:inline-block;vertical-align:top;float:none;}
+	.newcta {position:static;margin:20px 0px;width:100%;}
+	.newcta:after {display:block;content:'';clear:both;}
+}
+@media (max-width: 1199px) {
+	.inner {width:100%;overflow:hidden;}
+}
+@media (max-width: 1199px) {
+	#preplayer {position: relative;padding-bottom: 56.25%;padding-top: 25px;height: 0;width:100%;}
+	#preplayer iframe#player, #preplayer iframe#playerhere {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%!important;
+		height: 100%!important;
+		margin-bottom:10px;
+	}
+	.mobile {display:block;}
+	.nomobile {display:none;}
+	.inner {width:100%;}
+	header .topmenu, header #topfixed, nav {display:none;}
+	header.mobfixed {display:block;position:fixed;top:-1px;left:0px;z-index:105;box-shadow:0 8px 16px 0 rgba(0,0,0,0.16);}
+	nav.mobfixed {display:none!important;position:fixed;top:70px;left:0px;z-index:101;/*box-shadow:none;*/min-height:60px;background:#FAFAFA;overflow:hidden;}
+	nav.mobfixed #mainmenu {margin-left:40px;text-transform:uppercase;color:}
+	nav.mobfixed #mainmenu li {display:none;}
+	nav.mobfixed:hover {height:auto;background:#FAFAFA;padding-bottom:8px;border-bottom:2px solid #eee;}
+	nav.mobfixed:hover #mainmenu li {display:block;padding-bottom:0px;padding-top:8px;margin:0px;}
+	nav.mobfixed:hover #mainmenu li.all {margin-top:8px;}
+	nav.mobfixed #mainmenu li.right {display:none!important;}
+	nav.mobfixed:hover #mainmenu li.right.explore {display:block!important;float:none;}
+	.page-search nav.mobfixed #mainmenu li.right.explore {display:block!important;float:none;}
+	.page-explore nav.mobfixed #mainmenu li.right.explore {display:block!important;float:none;}
+	.tag-template nav.explore.mobfixed #mainmenu li.right.explore {display:block!important;float:none;}
+	/*nav.explore, nav.explore.mobfixed {display:none!important;}*/
+	nav.mobfixed #mainmenu li.current {border-bottom:0px;}
+	nav.mobfixed #mainmenu li.current a {color:#000;}
+	nav.mobfixed #mainmenu li.current:nth-child(1) a {color:#FF8700;}
+	.author-template nav.mobfixed #mainmenu li.authors {display:block;}
+	.author-template nav.mobfixed {z-index:10100;top:0px;}
+	.page-all-authors nav.mobfixed #mainmenu li.authors {display:block;}
+	.tag-template nav.mobfixed #mainmenu li.current, .post-template nav.mobfixed #mainmenu li.current {display:block;border-bottom:0px;}
+	.home-template nav.mobfixed #mainmenu li.all {display:block;color:#FF8700;}
+	.home-template nav.mobfixed #mainmenu li.all a {color:#FF8700;}
+	
+	body.tag-template.tag-continuous-performance-testing nav.mobfixed #mainmenu li.all,
+	body.tag-template.tag-introduction-to-augmented-reality nav.mobfixed #mainmenu li.all,
+	body.tag-template.tag-data-science-toolkit-series nav.mobfixed #mainmenu li.all,
+	body.tag-template.tag-deploying-in-stream-processing nav.mobfixed #mainmenu li.all,
+	body.tag-template.tag-in-stream-processing-series nav.mobfixed #mainmenu li.all,
+	body.tag-template.tag-implementing-autocomplete-with-solr-series nav.mobfixed #mainmenu li.all,
+	body.tag-template.tag-advanced-solr-lucene-topics-nested-search-for-e-commerce-applications nav.mobfixed #mainmenu li.all,
+	body.tag-template.tag-image-search-series nav.mobfixed #mainmenu li.all {display:block;color:#FF8700;}
+	
+	body.tag-template.tag-continuous-performance-testing nav.mobfixed #mainmenu li.all a,
+	body.tag-template.tag-introduction-to-augmented-reality nav.mobfixed #mainmenu li.all a,
+	body.tag-template.tag-data-science-toolkit-series nav.mobfixed #mainmenu li.all a,
+	body.tag-template.tag-deploying-in-stream-processing nav.mobfixed #mainmenu li.all a,
+	body.tag-template.tag-in-stream-processing-series nav.mobfixed #mainmenu li.all a,
+	body.tag-template.tag-implementing-autocomplete-with-solr-series nav.mobfixed #mainmenu li.all a,
+	body.tag-template.tag-advanced-solr-lucene-topics-nested-search-for-e-commerce-applications nav.mobfixed #mainmenu li.all a,
+	body.tag-template.tag-image-search-series nav.mobfixed #mainmenu li.all a {color:#FF8700;}
+	
+	
+	.blog.list {padding:0px 10px;position:relative;/*top:-32px;*/top:25px;}
+	.blog.post {padding:20px 10px;}
+	.blog.post #postcontent .mobile .postauthor img {width:100px;height:100px;float:left;margin-right:20px;margin-bottom:20px;}
+	.blog.post #postcontent .mobile .postauthor b, .blog.post #postcontent .mobile .postauthor span {display:block;}
+	.blog.post #postcontent .mobile .postauthor .mobauth {line-height:26px;}
+	.blog.post #postcontent .mobile .postauthor b {padding-top:5px;line-height:18px;}
+	.blog.post #postcontent .mobile .postauthor a.tag {display:block;border-radius: 12px;background-color:#FF8700;text-decoration:none;text-transform:uppercase;float:left;padding:3px 14px;color:#FFFFFF;font-size:12px;	line-height:14px;}
+	.blog.post #postcontent {width:100%;}
+	.blog.post #share {display:none;}
+	.blog.post #comments {display:none;}
+	.blog.post .blognav {display:none;}
+	.blog.post .ctas {display:block;padding-bottom:0px;}
+	.blog.post .ctas h4 {font-size:26px;}
+	.blog.post .ctas .left, .blog.post .ctas .right{display:block;width:100%;float:none;margin-bottom:15px;}
+	.blog.post .ctas .right{padding-left:0px;margin-bottom:0px;}
+	footer {display:none;}
+	header #logo {margin-left:20px;}
+	header #logo img {margin:18px 50px 18px 0px;}
+	div#hero {position:absolute;height:100vh;position:relative;/*top:-72px;*/top:0px;overflow:hidden;}
+	div#hero.authors {display:none;}
+	div#hero .inner {padding-left:15px;padding-right:15px;}
+	.home-template div#hero .inner {height:100vh;}
+	.home-template div#hero h1 {position:absolute;bottom:80px;width:99%;text-align:center;font-size:17px;line-height:22px;top:auto;transform:none;padding-left:0px;}
+	.home-template div#hero h1 b {font-size:36px;line-height:65px;}
+	div#hero h1.tag, div#hero h1.tag b {font-size:44px;line-height:54px;padding-top:50%;}
+	div#hero.post {height:200px;max-height:200px;min-height:200px;position:relative;margin-top:130px;padding-top:0px;}
+	.blog.list article {margin:0px 0px 30px;width:98%;max-width:375px;float:none;display:inline-block;}
+	.blog.list .serieswrap article div.cntt {padding:34px 14px;}
+	.blog.list .serieswrap article {max-width:290px;width:290px!important;vertical-align:top;margin:20px 20px 70px 10px!important;float:left;}
+	.blog.list .row .serieswrap article:nth-of-type(3n) {margin:20px 20px 70px 10px!important;}
+	
+	.blog.list .serieswrap {margin-bottom:0px;}
+	.slick-list {max-width:320px!important;overflow:visible!important;}
+	
+	.blog.list article figure, .blog.list article.featured figure {width:100%;}
+	
+	.blog.list article.featured {width:99%;max-width:375px;}
+	.blog.list article.featured .featwrap {width:100%;position:absolute;left:0px;top:-8px;}
+	.blog.list article#tag-list  {height:auto;margin-top:10px;}
+	/*#homeseries {display:none;}*/
+	a#ajaxmore {position:relative;/*bottom:-35px;*/}
+	.prefooter {position:relative;top:32px;height:60px;}
+	.prefooter .inner {padding:0px 10px;}
+	.prefooter p {padding-top:10px;text-align:left;}
+	.prefooter p::after {content:'';display:block;clear:both;}
+	.prefooter p span {width:180px;float:left;font-size:14px;line-height:20px;text-align:left;display:none;}
+	.prefooter p a#subscribe {float:none;display:inline-block;font-size:13px;margin-left:0px;margin-right:25px;padding:9px 12px;border-radius:10px;}
+	.prefooter a.addthis_native_counter_parent {display:inline-block;margin: 15px 4px 0px;}
+	
+	#mobnav {display:none;}
+	#mobnav.active {display:block;z-index:118;position:fixed;top:0px;bottom:0px;left:0px;right:0px;width:100%;height:100%;background:#fff;padding:10px;}
+	#mobnav .row1:first-of-type {margin-top:10px;}
+	#mobnav .row1.nobottom {border-bottom:0px solid transparent;}
+	#mobnav .row1 {padding-top:5px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #ddd;text-align:centerl}
+	#mobnav .row1 form {text-align:left;}
+	#mobnav .row1 form input#submit2 {display:inline-block;vertical-align:middle;
+    width: 24px;
+    height: 24px;
+    background: url(https://grid-dynamics-blog.ghost.io/assets/css/search.svg) center no-repeat;
+    cursor: pointer;
+    position: relative;
+    border: 0px;
+    padding: 0px;margin-right:5px;}
+	#mobnav .row1 form input#search2 {border:0px;padding:2px;margin:0px;width:250px;text-transform:uppercase;color:#ddd;text-align:left;}
+	#mobnav .row1 form input#search2::placeholder, #mobnav .row1 form input#search2::-webkit-input-placeholder, #mobnav .row1 form input#search2::-moz-placeholder, #mobnav .row1 form input#search2:-ms-input-placeholder #mobnav .row1 form input#search2:-moz-placeholder {color:#ddd;text-transform:uppercase;}
+	
+	#mobnav #getintouch2 {display:block;float:right;text-decoration:none;text-transform:uppercase;margin:0px 0px 5px 30px;border-radius:20px;background-color:#FF8500;color:#FFFFFF;font-size:14px;font-weight:bold;line-height:40px;text-align:center;height:40px;width:144px;cursor:pointer;}
+	#mobnav #phone2 {float:left;text-decoration:none;display:block;margin:10px 0px 0px 10px;opacity:0.75;color:#000000;font-family:"Source Sans Pro";font-size: 16px;line-height:20px;padding-left:25px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/phone.svg') left center no-repeat transparent;}
+	#mobnav #topmenu2 {text-align:left;list-style-type:none;margin:10px 0px 10px 0px;padding:0px 0px 0px 20px;}
+	#mobnav #topmenu2 li {display:block;margin-bottom:7px;}
+	#mobnav #topmenu2 a {text-decoration: none;text-transform:uppercase;opacity:0.75;color: #000;font-size:16px;font-weight: bold;line-height:30px;}
+	#mobnav #topmenu2 li.current a {color:#FF8700;}
+	#mobnav a.facebook {display:inline-block;margin:0px 10px 3px 10px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/facebook.svg') center no-repeat;}
+	#mobnav a.twitter {display:inline-block;margin:0px 10px 3px 10px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/twitter.svg') center no-repeat;}
+	#mobnav a.linkedin {display:inline-block;margin:0px 10px 3px 10px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/linkedin.svg') center no-repeat;}
+	#mobnav a.youtube {display:inline-block;margin:0px 10px 3px 10px;width:20px;height:20px;background:url('https://grid-dynamics-blog.ghost.io/assets/css/youtube.svg') center no-repeat;}
+	#mobnav a.slink {color:#4a4a4a;text-decoration:none;display:inline-block;margin:7px 9px;/*line-height:190%;*/line-height:190%;}
+	#mobnav a.slink.email {text-decoration:underline;}
+	
+	li.right.explore.current span {display:block;position:absolute;right:0px;top:25px;}
+	#mobilefils {display:block;}
+	
+	.author-template header, .author-template header.mobfixed {display:none;}
+	.author-template #author {position:absolute;background:#fff;min-height:100vh;padding-top:0px;}
+	.author-template #author p.nav  {/*display:none;*/}
+	.author-template .blog.list {display:none;}
+	.author-template #author #authorbox div.left, .author-template #author #authorbox div.right {width:auto;}
+	.author-template #author #authorbox {padding:15px;position:relative;width:100%;padding-top:80px;}
+	.author-template #author .closeauthor {position:absolute;top:10px;right:10px;z-index:8000;}
+	.author-template .closeauthor {position:absolute;top:20px;right:10px;z-index:18000;}
+	.author-template #author #authorbox img.mobpic {width:100px;height:100px;border-radius:50%;float:left;overflow:hidden;background-color:#4a4a4a;margin-right:15px;margin-bottom:10px;}
+	.author-template #author #authorbox div.right h1 {font-size:19px;line-height:21px;}
+	.author-template #author #authorbox div.right h2 {font-size:17px;line-height:21px;height:100px;vertical-align: middle;display: table-cell;}
+	.author-template #author #authorbox .authorbio {clear:both;}
+	.author-template #author #authorbox h3 {padding-left:0px;margin-bottom:0px;font-size:17px;line-height:24px;}
+	.author-template #author #authorbox .postlist a span {display:block;float:none;width:auto;text-align:left;margin-bottom:0px;}
+	.author-template .prefooter {display:none;}
+	#authorflatlist {display:none!important;}
+	.single {width:100%;}
+	.single div.left1 {margin:0px auto 15px;float:none;}
+	.single div.left2 {width:100%;float:none;}
+	.single h3 {padding-left:0px;}
+	.single .postlist a span {width:100%;float:none;display:block;padding-right:0px;text-align:left;}
+	.single a.authormore {padding-left:0px;}
+	
+	
+	.filterbar {display:none;}
+	.explor .img {width:100%;float:none;display:block;}
+	.explor .cntt {width:100%;float:none;display:block;}
+	
+	/* hero image fix */
+	#hero .area {display:none!important;}
+	body.home-template div#hero div.inner {background:transparent!important;}
+	body.tag-template div#hero div.inner {background:transparent!important;height:100vh;}
+	body.home-template div#hero {background: url(/assets/css/blog_mainheader_mobile.jpg) center no-repeat!important;background-size: cover!important;}
+	body.home-template div#hero #fadehome {display:block;position:absolute;bottom:0px;left:0px;right:0px;height:240px;background-image:linear-gradient(-180deg, rgba(98,98,98,0.00) 0%, #282828 100%);}
+	body.tag-template.tag-big-data div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_bigdata.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-search div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_search.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-test-automation div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_qa.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-data-science div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_datascience.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-devops div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/_blog_headers_devops_mobile_2.jpg) center 70px no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-machine-learning-and-artificial-intelligence div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_mlai.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-mobile div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_mobile.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-e-commerce div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_ecommerce.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-user-interface div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_ui.jpg) center no-repeat!important;background-size: cover!important;}
+	
+	/*
+	body.tag-template.tag-continuous-performance-testing div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_qa.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-introduction-to-augmented-reality div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_ecommerce.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-data-science-toolkit-series div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_datascience.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-deploying-in-stream-processing div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_bigdata.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-in-stream-processing-series div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_bigdata.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-implementing-autocomplete-with-solr-series div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_search.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-advanced-solr-lucene-topics-nested-search-for-e-commerce-applications div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_search.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-image-search-series div#hero {background:url(https://grid-dynamics-blog.ghost.io/assets/css/blog_headers_mobile_mlai.jpg) center no-repeat!important;background-size: cover!important;}
+	*/
+	
+	body.tag-template.tag-continuous-performance-testing div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/_blog_banner_black_continuous_performance_testing_mobile.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-introduction-to-augmented-reality div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/_blog_banner_black_ar_moblie.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-data-science-toolkit-series div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/_blog_banner_black_data_science_toolkit_mobile_v2.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-deploying-in-stream-processing div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/_blog_banner_black_deploying_ISP_mobile_v2.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-in-stream-processing-series div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/_blog_banner_black_ISP_mobile.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-implementing-autocomplete-with-solr-series div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/_blog_solr_lucent_search_ecommerce_mobile.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-advanced-solr-lucene-topics-nested-search-for-e-commerce-applications div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/_blog_banner_black_nested_search_mobile.jpg) center no-repeat!important;background-size: cover!important;}
+	body.tag-template.tag-image-search-series div#hero {background: url(https://grid-dynamics-blog.ghost.io/assets/css/_blog_banner_black_image_search_mobile.jpg) center no-repeat!important;background-size: cover!important;}
+	
+	body.tag-template.tag-continuous-performance-testing div#hero div.inner {background:transparent!important;}
+	body.tag-template.tag-introduction-to-augmented-reality div#hero div.inner {background:transparent!important;}
+	body.tag-template.tag-data-science-toolkit-series div#hero div.inner {background:transparent!important;}
+	body.tag-template.tag-deploying-in-stream-processing div#hero div.inner {background:transparent!important;}
+	body.tag-template.tag-in-stream-processing-series div#hero div.inner {background:transparent!important;}
+	body.tag-template.tag-implementing-autocomplete-with-solr-series div#hero div.inner {background:transparent!important;}
+	body.tag-template.tag-advanced-solr-lucene-topics-nested-search-for-e-commerce-applications div#hero div.inner {background:transparent!important;}
+	body.tag-template.tag-image-search-series div#hero div.inner {background:transparent!important;}
+	
+	body.tag-template div#hero div.inner #fademobile {display:block;position:absolute;bottom:0px;left:0px;right:0px;height:300px;background-image:linear-gradient(-180deg, #62626200 0%, #282828 100%);}
+	body.tag-template div#hero div.inner h1 {position:absolute;bottom:80px;text-align:center;left:10px;right:10px;padding-top:0px;padding-left:0px;top:auto;transform:none;}
+	
+	body.postid5b68addc9f554c00bffa3e51 #hero {background:url(/assets/css/pp_mobile.jpg) center bottom no-repeat!important;background-size:cover!important;height:450px;min-height:450px;}
+	
+	.authwrp .ttip {display:none!important;}
+	
+	.post-template a.goauthor {width:auto;float:left;}
+	
+	.leaveform .myinner2 {left:5px;right:5px;top:5px;bottom:5px;}
+	.leaveform .myinner {padding:10px 10px;overflow:hidden;max-width:100%;width:100%;height:auto;top:0px;right:0px;left:0px;transform:none;}
+	.leaveform .myinner2 a.closemenot2 {display:block;right:10px;}
+	.leaveform .myinner span.hh1 {height:auto;font-size:16px;line-height:18px;margin-bottom:0px;width:100%;display:block;font-weight:600;}
+	.leaveform .myinner p {font-size:20px;line-height:24px;margin-bottom:20px;}
+	.leaveform .myinner #mc_embed_signup form#mc-embedded-subscribe-form form {padding:0px;}
+	.leaveform .myinner #mc_embed_signup form#mc-embedded-subscribe-form .mc-field-group input{padding:2px 0;}
+	.leaveform .myinner #mc_embed_signup form#mc-embedded-subscribe-form .mc-field-group{padding-bottom:5px;}
+	.leaveform .myinner #mc_embed_signup .mc-field-group.input-group ul li {padding:0px;}
+	.leaveform .myinner #mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {padding:3px;margin:0px;}
+	.leaveform .myinner form .emailmenot0, .leaveform .myinner form .emailmenot1 {width:100%;}
+	.leaveform .myinner form .emailmenot0 {margin-bottom:10px;}
+	.leaveform .myinner form .emailmenot1 {margin-bottom:25px;}
+	.leaveform .myinner form .emailmenot0 input, .leaveform .myinner form .emailmenot1 input.emailmenot2 {width:100%;}
+	.leaveform .myinner form input#sss {margin-right:0px;margin-bottom:25px;}
+	.leaveform .myinner form .emailmenot0 input {display:block;margin:0px 0px 10px;}
+	
+	/* sandwitch */
+	#menu-toggle-wrapper {
+	  position: fixed;
+	  cursor:pointer;
+	  top: 0;
+	  right: 0;
+	  width: 70px;
+	  height: 70px;
+	  z-index: 120;
+	  display: block;
+	}
+	#menu-toggle-wrapper #menu-toggle {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  font-size: 30px;
+	  display: block;
+	  margin-left: -15px;
+	  width: 30px;
+	  height: 2px;
+	  background: #999;
+	}
+	#menu-toggle-wrapper #menu-toggle:after,
+	#menu-toggle-wrapper #menu-toggle:before {
+	  content: '';
+	  position: absolute;
+	  width: 100%;
+	  height: 2px;
+	  background: #999;
+	  left: 0;
+	  -webkit-transform-origin: center center;
+	  -moz-transform-origin: center center;
+	  -ms-transform-origin: center center;
+	  -o-transform-origin: center center;
+	  transform-origin: center center;
+	}
+	#menu-toggle-wrapper #menu-toggle:before {
+	  top: -8px;
+	}
+	#menu-toggle-wrapper #menu-toggle:after {
+	  bottom: -8px;
+	}
+	#menu-toggle-wrapper.active #menu-toggle {
+	  background: 0 0;
+	}
+	#menu-toggle-wrapper.active #menu-toggle:after {
+	  -webkit-transform: rotate(-45deg) translate(2px, -8px);
+	  -moz-transform: rotate(-45deg) translate(3px, -8px);
+	  -ms-transform: rotate(-45deg) translate(3px, -8px);
+	  -o-transform: rotate(-45deg) translate(3px, -8px);
+	  transform: rotate(-45deg) translate(3px, -8px);
+	}
+	#menu-toggle-wrapper.active #menu-toggle:before {
+	  -webkit-transform: rotate(45deg) translate(4px, 9px);
+	  -moz-transform: rotate(45deg) translate(3px, 8px);
+	  -ms-transform: rotate(45deg) translate(3px, 8px);
+	  -o-transform: rotate(45deg) translate(3px, 8px);
+	  transform: rotate(45deg) translate(3px, 8px);
+	}
+	#menu-toggle-wrapper #menu-toggle,
+	#menu-toggle-wrapper #menu-toggle:after,
+	#menu-toggle-wrapper #menu-toggle:before {
+	  -webkit-transition: all 0.3s cubic-bezier(0.585, -0.6, 0.43, 1.65);
+	  -moz-transition: all 0.3s cubic-bezier(0.585, -0.6, 0.43, 1.65);
+	  -ms-transition: all 0.3s cubic-bezier(0.585, -0.6, 0.43, 1.65);
+	  -o-transition: all 0.3s cubic-bezier(0.585, -0.6, 0.43, 1.65);
+	  transition: all 0.3s cubic-bezier(0.585, -0.6, 0.43, 1.65);
+	}
+	/*
+	#menu-toggle-wrapper:hover #menu-toggle:before {
+	  top: -6px;
+	}
+	#menu-toggle-wrapper:hover #menu-toggle:after {
+	  bottom: -6px;
+	}
+	#menu-toggle-wrapper.active:focus #menu-toggle:after,
+	#menu-toggle-wrapper.active:hover #menu-toggle:after {
+	  bottom: -8px;
+	}
+	#menu-toggle-wrapper.active:focus #menu-toggle:before,
+	#menu-toggle-wrapper.active:hover #menu-toggle:before {
+	  top: -8px;
+	}
+	*/
+	
+}
+@media (min-width: 560px) and (max-width: 1199px) {
+	body.home-template div#hero {background: url(/assets/css/blog_mainheader_tablet.jpg) top center no-repeat!important;background-size: cover!important;}
+	.blog.list .row article:nth-of-type(3n) {margin-right:auto!important;}
+	.blog.list article {margin: 0px auto 30px;display:block;}
+}
+
+
+body.casestudy header {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.16);}
+body.casestudy header #topmenu {display:none!important;}
+body.casestudy header #topfixed {display:none!important;}
+body.casestudy nav {display:none!important;}
+body.casestudy #share {display:none!important;}
+body.casestudy #comments {display:none!important;}
+body.casestudy .blognav {display:none!important;}
+body.casestudy .inner.ctas {display:none!important;}
+body.casestudy .tag.secondary {display:none!important;}
+body.casestudy .prefooter {display:none!important;}
+body.casestudy .blog.post #postcontent {width:100%!important;}
+body.casestudy .blog.post #postcontent > h1 {margin-bottom:15px;}
+body.casestudy .blog.post #postcontent > h2 {margin-bottom:25px;font-size:2.5rem;}
+
+input.mce_inline_error {border-color:red;}
+
+	</style>
+</head>	
+<body class="post-template tag-machine-learning-and-artificial-intelligence tag-e-commerce tag-search postid5e163f898fea530044b1a403">
+<div id="wrap">
+	<header>
+		<div class="inner">
+			<div id="logo"><a href="https://www.griddynamics.com/"><img src="/assets/i/logo.svg?v=8e89579899" alt="Grid Dynamics Blog"></a></div>
+			<ul class="topmenu" id="topmenu">
+				<li><a href="https://www.griddynamics.com/services">Services</a></li>
+				<li><a href="https://www.griddynamics.com/technologies">Technologies</a></li>
+				<li><a href="https://www.griddynamics.com/partnerships">Partnerships</a></li>
+				<li><a href="https://www.griddynamics.com/careers">Careers</a></li>
+				<li><a href="https://www.griddynamics.com/events">Events</a></li>
+				<li><a href="https://www.griddynamics.com/company">About Us</a></li>
+				<li class="current"><a href="/">Blog</a></li>
+				<li><a href="https://www.griddynamics.com/investor-relations">Investors</a></li>
+			</ul>
+			<ul class="topmenu" id="topmenudev" style="display:none;">
+				<li><a href="https://www.griddynamics.com/services">Services</a></li>
+				<li><a href="https://www.griddynamics.com/technologies">Technologies</a></li>
+				<li><a href="https://www.griddynamics.com/partnerships">Partnerships</a></li>
+				<li><a href="https://www.griddynamics.com/careers">Careers</a></li>
+				<li><a href="https://www.griddynamics.com/events">Events</a></li>
+				<li><a href="https://www.griddynamics.com/company">About Us</a></li>
+				<li class="current"><a href="/">Blog</a></li>
+				<li><a href="https://www.griddynamics.com/investor-relations">Investors</a></li>
+			</ul>
+			<div id="topfixed">
+				<a href="https://www.griddynamics.com/contact" id="getintouch">Get in touch</a>
+			</div>
+		</div>
+	</header>
+	<div id="menu-toggle-wrapper" class="mobile"><div id="menu-toggle"></div></div>
+	
+		<input value="https://blog.griddynamics.com/semantic-vector-search-the-new-frontier-in-product-discovery/" type="hidden" id="currenturl">
+	<input value="Semantic vector search: the new frontier in product discovery" type="hidden" id="currentttl">
+	<div id="hero" class="post" style="background:url(/content/images/2020/01/svs_post_banner_v2.jpg) center no-repeat;">
+		<fade><div class="inner"></div></fade>
+	</div>
+
+		<nav>
+		<div class="inner">
+			<ul id="mainmenu">
+				<li class="all"><a href="/">All Topics</a></li>
+				<li
+					
+				><a href="/tag/big-data/">Big Data</a></li>
+				<li
+					 class="current" 
+				><a href="/tag/search/">Search</a></li>
+				<li
+					
+				><a href="/tag/test-automation/">QA</a></li>
+				<li
+					
+				><a href="/tag/devops/">DevOps</a></li>
+				<li
+					
+				><a href="/tag/data-science/">Data Science</a></li>
+				<li
+					 class="current" 
+				><a href="/tag/machine-learning-and-artificial-intelligence/">ML &amp; AI</a></li>
+				<li
+					
+				><a href="/tag/user-interface/">UI</a></li>
+				<li
+					
+				><a href="/tag/mobile/">Mobile</a></li>
+				<li
+					 class="current" 
+				><a href="/tag/e-commerce/">E-commerce</a></li>
+				<li  ><a href="/series/">Series</a></li>
+				<li class="authors"><a href="/all-authors/">Blog Authors</a></li>
+								<li class="right search">
+					<span id="gonewsearch" style="display:block;width: 24px;height: 24px;background: url(https://grid-dynamics-blog.ghost.io/assets/css/search.svg) center no-repeat;cursor: pointer;position: relative;border: 0px;padding: 0px;"></span>
+				</li>
+				<li class="right explore"><a href="/explore/">Filter</a></li>			</ul>
+		</div>
+	</nav>
+	<div class="blog post">
+		<div class="inner">
+			<div class="row">
+
+				<article style="position:relative;">
+					<div id="share">
+						<div id="share2">
+							Share
+							<div class="sharethis-inline-share-buttons"></div>
+							<br>Follow<br>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=656641021180099&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+							<div class="fb-like" data-href="https://www.facebook.com/griddynamics" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+							<br>
+							<a href="https://twitter.com/griddynamics?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @griddynamics</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+						</div>
+
+					</div>
+					<div id="postcontent" itemscope itemType="http://schema.org/BlogPosting">
+						
+						<h1 itemprop="headline">Semantic vector search: the new frontier in product discovery</h1>
+						
+						<meta itemprop="inLanguage" content="en-US"/>
+						<link itemprop="mainEntityOfPage" href="https://blog.griddynamics.com//semantic-vector-search-the-new-frontier-in-product-discovery/" />
+						<meta itemprop="datePublished" content="Jan 09, 2020"/>
+						<meta itemprop="dateModified" content="Jan 20, 2020"/>
+						<b style="display:none!important;" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+							<meta itemprop="url" content="https://blog.griddynamics.com/assets/i/griddynamics.jpg">
+							<meta itemprop="width" content="227"><meta itemprop="height" content="57">
+						</b>
+						<span style="display:none!important;" itemscope itemprop="publisher" itemtype="http://schema.org/Organization">
+							<a style="text-decoration:none;" href="https://blog.griddynamics.com/" itemprop="name">Grid Dynamics</a>
+							<b style="display:none;" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+								<meta itemprop="url" content="https://blog.griddynamics.com/assets/i/griddynamics.jpg">
+							</b>
+						</span>
+
+						<div class="mobile">
+							<span style="font-size:16px;color:#000;display:block;margin-bottom:10px;">Jan 09, 2020</span>
+						</div>
+						<div class="no-mobile">
+							<div class="posttag right nomobile">
+								<span style="font-size:16px;color:#000;display:block;margin-top:45px;margin-bottom:10px;">Jan 09, 2020</span>
+								<a href="/tag/machine-learning-and-artificial-intelligence" class="tag">ML &amp; AI</a>
+							</div>
+							<div class="postauthor left">
+							
+									<span itemprop="author" itemscope itemtype="http://schema.org/Person"><a href="/author/eugene-steinberg/" class="goauthor"><img src="/content/images/2018/07/eugeneheadshot.png" alt="Eugene Steinberg" class="author"> <span itemprop="name">Eugene Steinberg</span></a></span>
+
+							</div>
+						</div>
+						<div class="posttag mobile clear">
+							<a href="/tag/machine-learning-and-artificial-intelligence" class="tag">ML &amp; AI</a>
+						</div>
+						<hr class="hr height30">
+												
+						<div id="mypost" itemprop="articleBody">
+							<div class="kg-card-markdown"><p>Deep-learning powered natural language processing is growing by leaps and bounds. During the past year, <a href="https://gluebenchmark.com/leaderboard">latest NLP models</a> exceeded the human performance baseline in some specific language understanding tasks.</p>
+<p><img src="/content/images/2020/01/semantic_vector-165.png" alt="semantic_vector-165"></p>
+<p>Source: <a href="https://ai.facebook.com/blog/new-advances-in-natural-language-processing-to-better-connect-people/">Facebook AI</a></p>
+<p>State-of-the-art NLP models allow AI-enabled systems to represent and interpret the human language better than ever before. At the same time, major retailers and cloud providers accumulate vast volumes of customer behavior data which enable them to train those models at an unprecedented scale.</p>
+<p>These two key factors are fueling the current wave of  innovation in the field of retail search and product discovery. The new generation of ML-based search engines is rapidly maturing, achieving relevant, timely and personalized search results that closely match customer buying intent.</p>
+<p>We can visualize the evolution of the retail search engines from their roots in general-purpose full text search algorithms, through the more advanced understanding of queries and the domain using concept search (a.k.a. semantic query parsing) and knowledge graphs, to the current state of the industry, where machine learning is helping traditional search engines to produce more relevant results.</p>
+<p><img src="/content/images/2020/01/semantic_vector-168.png" alt="semantic_vector-168"></p>
+<p>In this post, we will discuss the next major step in the evolution of retail search: the arrival of deep learning-based semantic vector search engines with cloud-scale data.</p>
+<h1 id="searchisasolvedproblemorisit">Search is a solved problem. Or is it?</h1>
+<p>Search engines have been with us for several decades as an integral part of our digital life. We are casually searching over billions of web pages, millions of products in online catalogs, hundreds of thousands of vacation rental listings without thinking twice about it. So, is search a solved problem?</p>
+<p>Electrical engineers often joke that they have only two problems: <em>contact</em> where it shouldn’t be and <em>non-contact</em> where it should. Likewise, search engineers always deal with two phenomena of the human language: <em>polysemy</em> and <em>synonymy</em>. Polysemy means that the same word may represent different concepts, like the word “table” in “table game” vs “accent table”. Synonymy means that the same concept can be represented in many ways by different words, like “Big Apple”, “NYC” and “New York” which all refer to the same city.</p>
+<p>Humans are very good at cutting through polysemy and synonymy based on the conversational context and background knowledge, which helps them to deal with intrinsic ambiguity of words. Customers now expect the same from search engines. They want their online search service to be able to “understand” the queries, e.g. return results based on the meaning, or <em>semantics</em> of the query rather than a coincidental word match.</p>
+<p>Historically, search engines have approached this problem from many different angles: they have used sophisticated semantic query parsing techniques, constructed and employed vast knowledge graphs capturing the meaning and relationships of words, and trained machine learning models to resolve ambiguity.</p>
+<p>However, those methods are largely helpless when it comes to <em>out-of-the-vocabulary</em> searches, when customers use words which can not be found in available data. They also struggle with <em>symptom searches</em>, when a customer is trying to describe his problem, not a product which solves it, such as “headache” or “leaky roof”. <em>Thematic</em> searches where customers want to be inspired by some style, topic or theme, such as “madonna dress”, also represent significant challenges.</p>
+<p>To address such queries we need to go deeper into the meaning of both data and queries in a way directly accessible and understandable to computers. This is a central idea behind <em>semantic vector search</em>, made possible by deep learning.</p>
+<h1 id="representingyourdataandyourqueriesassemanticvectors">Representing your data AND your queries as semantic vectors</h1>
+<p>Computers can only deal with numbers, so we need a way to represent our data numerically. Obviously, a single number can not represent all the complexity of a query or a retail product, so we need a whole lot of them. An orderly list of numbers, such as [23, -4.13, 0, -12] is called <em>a vector</em>, and the length of this list is called a <em>vector dimension</em>.</p>
+<p>Imagine that we decided to represent all our queries and products as 2-dimensional vectors, such as [1,-3], creating a <em>vector space</em> which we can plot like this:</p>
+<p><img src="/content/images/2020/01/semantic_vector-174.png" alt="semantic_vector-174"></p>
+<p>Such representation is easily accessible by a computer, yet so far it is not very useful for search, as vectors representing our queries and products are scattered randomly all over the space and their positions don’t mean anything.</p>
+<p>What we really want to do is to transform our data vectors to <em>semantic vectors</em>. With <em>semantic vectors</em>, products and queries which are similar in terms of meaning are represented by vectors which are similar in terms of distance:</p>
+<p><img src="/content/images/2020/01/semantic_vector-173.png" alt="semantic_vector-173"></p>
+<p>Now we have clear clusters of queries and products representing concepts of dresses, t-shirts and tables. Distances between points represent levels of similarity between corresponding concepts. As you can see, t-shirts are much closer to dresses than tables. We have thus built a <em>semantic vector space</em> for our data.</p>
+<p>With semantic vector space, the complex and vague problem of searching for relevant products by text queries is transformed into a well-stated problem of searching for closest vectors in vector space, something computers are very good at.</p>
+<p>In reality, of course, our products and queries will be represented not as 2D vectors, but as vectors with hundreds of dimensions representing all the complexity necessary to capture the meaning of queries and products. But don’t worry, math works the same way for high- dimensional vectors, and computers have little trouble with them.</p>
+<p>The following figure shows a real-life, 128-dimensional vector space projected to 2 dimensions with 20 results closest to the “accent table” query presented in this space.</p>
+<p><img src="/content/images/2020/01/semantic_vector-169.png" alt="semantic_vector-169"></p>
+<p>As you can see, in our vector space the queries with similar meaning are clustered together.</p>
+<p>So far, we didn’t talk about the most crucial step in the whole story: how do we achieve this “clustering by meaning”? In other words, how do we find a semantic vector representation for our products and queries? For that, we need to harness the power of natural language processing and customer behavior data analysis using deep learning.</p>
+<h1 id="trainingadeeplearningmodeltoproducesemanticvectors">Training a deep learning model to produce semantic vectors</h1>
+<p>Natural language processing capabilities made a huge leap forward with the introduction of word and sentence neural encoders which represent words and sentences as semantic vectors. Both early models like word2vec or GloVe, and especially the latest ones like BERT and Albert, are a tremendous help for anybody dealing with deep learning analysis of text data. Those models are trained by analysing huge volumes of texts, such as Wikipedia, trying to guess a word by its context, e.g. surrounding words.</p>
+<p>Word and sentence vectors produced by NLP models can be used to encode queries, product attributes and descriptions in a way that somewhat captures their meaning. However, to achieve our goal of building a semantic query/product space useful for search we need to train our own <em>similarity model</em> which will map our products and queries to semantic vectors.</p>
+<p>One of the possible approaches to train a similarity model is to employ <em>the triplet loss method</em>:</p>
+<p><img src="/content/images/2020/01/semantic_vector-172.png" alt="semantic_vector-172"></p>
+<p>In this approach, we use our training data to form triplets containing one query called <em>anchor</em>, i.e. one product which we believe is relevant as the positive sample, and another product which we believe is irrelevant as the negative sample.</p>
+<p>We encode both the query and the products into vectors and calculate distances between them. We then try to make the query and the positive sample as close to each other as possible, while making the query and the negative sample as far as possible. We calculate our error accordingly and backpropagate it to the neural network, slightly changing its internal weights.</p>
+<p>This means that with updated weights our neural network will encode the same query and our products by moving vectors in such a way that a “black dress” query will be slightly closer to the actual black dress and slightly further from the white t-shirt, thus reducing the error:</p>
+<p><img src="/content/images/2020/01/semantic_vector-171.png" alt="semantic_vector-171"></p>
+<p>Repeating this step several million times with different triplets of queries and products, we will have trained our network to find an optimal vector for every product and query, even for those which are not available in the training set. During this process, vectors representing similar concepts will cluster by meaning, thus building a semantic vector space for us.</p>
+<p>Training deep learning similarity models requires a lot of data on what is relevant and what is not for particular queries. And getting this volume of high quality training data is not trivial.</p>
+<h1 id="obtainingthetrainingdata">Obtaining the training data</h1>
+<p>The only practical way to get the relevance model training data for the retailer is to crowdsource it from customers. Many retailers are already capturing clickstream events and storing this information in their data warehouse or data lake. This customer engagement data for search and browse sessions is a trove of knowledge from which your similarity model can learn the meaning of out-of-vocabulary words or find products relevant for symptom searches.</p>
+<p>All this happens because the model observes what products customers are interacting with, e.g. viewing, adding to the basket and especially purchasing, having used particular terms, phrases and concepts in their queries.</p>
+<p>Of course, technology giants and cloud providers running online marketplaces, advertisement platforms and web-scale search engines naturally have access to vast volumes of training data and thus can train their deep learning models on an unprecedented scale. This, in addition to other assets, such as state-of-the-art NLP models and vast knowledge graphs, gives them an advantage and a long-term promise of a leadership position in the semantic vector space search.</p>
+<h1 id="searchingwithsemanticvectors">Searching with semantic vectors</h1>
+<p>Now, once we have trained a similarity model, we are ready to build a semantic vector search engine. First, we use our trained neural encoder to encode all products of our catalog as semantic vectors. Then, we are creating a <em>vector index</em> - a data structure designed to quickly find the closest vectors in a multi-dimensional vector space.</p>
+<p>When a customer is searching, the query is converted by the same neural encoder into its semantic vector representation - a <em>query vector</em>. We then use the vector index to find all the product vectors closest to the query vector in order to get our search results.</p>
+<p><img src="/content/images/2020/01/semantic_vector-170.png" alt="semantic_vector-170"></p>
+<p>It is worth mentioning that the structure of a semantic vector space, in addition to the main use case of searching products by query, provides us with two additional features “for free”: we can now search for queries by query, thus creating “did you mean?” functionality, and for products by product, enabling “similar products” recommendations. Pretty neat, isn’t it?</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>In this blog post, we described <em>semantic vector search</em>, which we believe to be the next major step in the never-ending quest to provide relevant, timely and personalized search results which match customer’s shopping intents.</p>
+<p>Semantic vector technology is emerging from the data science labs, and it has a lot of yet uncovered potential in the recommendations and personalization space which we will address in our upcoming posts.</p>
+<p>We believe that everybody interested in the future of retail search should take a closer look at both technological and commercial benefits that <em>semantic vector search</em> promises to bring.</p>
+<p>Happy searching (now with vectors)!</p>
+</div>
+						</div>
+						<div class="clear height30"></div>
+						<hr class="hr height30">
+						<a href="/tag/machine-learning-and-artificial-intelligence/" title="Machine Learning and Artificial Intelligence" class="tag secondary tag-5a141300c2ad980021367870">Machine Learning and Artificial Intelligence</a><a href="/tag/e-commerce/" title="E-commerce" class="tag secondary tag-5a14136dc2ad980021367873">E-commerce</a><a href="/tag/search/" title="Search" class="tag secondary tag-5a14126cc2ad98002136786d">Search</a>
+						<div class="clear height30"></div>
+						<!--
+						<a href="" class="tag secondary">Real Time</a>
+						<a href="" class="tag secondary">Machine Learning</a>
+						<a href="" class="tag secondary">In-stream</a>
+						<div class="clear height30"></div>
+						-->
+						<div id="comments">
+							<h4>Leave us a comment, we would love to know what you think</h4>
+							<!--<div></div>-->
+							<script>
+								var idcomments_acct = '2a24304e101f8602ef82beb292d746f2';
+								var idcomments_post_id;
+								var idcomments_post_url;
+							</script>
+							<span id="IDCommentsPostTitle" style="display:none"></span>
+							<script type='text/javascript' src='https://www.intensedebate.com/js/genericCommentWrapperV2.js'></script>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</article>
+
+			</div>
+
+		</div>
+
+		<div class="blognav clearfix">
+			<div class="left half">
+				<div class="inside right">
+					<small>Read the previous Machine Learning and Artificial Intelligence post</small>
+					<a href="/what-is-computer-vision-and-what-can-it-do/" class="equal1">What is computer vision and what can it do?</a>
+					<span>Nov 13, 2019</span>
+				</div>
+			</div>
+			<div class="right half">
+				<div class="inside left">
+				</div>
+			</div>
+		</div>
+
+		<div class="inner ctas">
+			<div class="left">
+								<h4>More articles in this series</h4>
+				<input type="hidden" value="5e163f898fea530044b1a403" id="fetchme2a">
+				<div id="fetchme2" class="hidden">
+				<span>machine-learning-and-artificial-intelligence</span><span>e-commerce</span><span>search</span>
+				</div>
+						</div>
+			<div class="right">
+				<h4>Popular articles</h4>
+								<a href="/atgs-black-box-blocking-your-e-commerce-view/"><b>ATG’s black box blocking your e-commerce view? Replatform with microservices</b><span>January 16, 2020</span></a>
+				<a href="/digital-transformation-requires-new-technology-partnerships-and-agile-co-innovation/"><b>Digital transformation requires new technology partnerships and Agile co-innovation</b><span>December 30, 2019</span></a>
+				<a href="/in-stream-processing-service-blueprint/"><b>Post 4. In-Stream Processing Service Blueprint</b><span>July 10, 2016</span></a>
+				<a href="/why-it-is-time-to-treat-your-atg-stack-as-a-legacy-system/"><b>Dear Oracle ATG users, It is time to treat your ATG stack as a legacy system and move forward to the cloud, open source, and microservices.</b><span>September 18, 2017</span></a>
+			</div>
+		</div>
+
+
+	</div>
+
+	
+	
+	
+	<div class="prefooter">
+		<div class="inner">
+			<a href="" id="closefoot"></a>
+			
+			<div class="nomobile" style="float:right;min-width:400px;margin-top:-7px;margin-right:40px;">
+					<form action="https://griddynamics.us8.list-manage.com/subscribe/post-json?u=87e94be7f2f8696424cb7e36a&amp;id=894069e189&amp;c=?" method="post" id="mc-embedded-subscribe-form2" class="mc-embedded-subscribe-form2" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					<input type="email" value="" name="EMAIL" class="required email grabme grabme2" required id="mce-EMAIL2" name="mce-EMAIL" placeholder="Enter your e-mail" style="padding:10px;">
+					<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="newsubscr button">
+					<div style="display:none!important;">
+						<input type="checkbox" value="1" name="group[168381][1]" checked>
+						<input type="checkbox" value="2" name="group[168381][2]" checked>
+						<input type="checkbox" value="4" name="group[168381][4]" checked>
+						<input type="checkbox" value="8" name="group[168381][8]" checked>
+						<input type="checkbox" value="128" name="group[168381][128]" checked>
+						<input type="checkbox" value="16" name="group[168385][16]" checked>
+						<input type="checkbox" value="32" name="group[168385][32]" checked>
+						<input type="checkbox" value="64" name="group[168385][64]" checked>
+					</div>
+					</form>
+			</div>
+			
+			<div class="mobile" style="float:right;padding-right:60px;">
+							<div class="addthis_toolbox addthis_32x32_style">
+							  <a class="addthis_counter_linkedin" style="display:inline-block;"></a>
+							  <a class="addthis_counter_twitter" style="display:inline-block;"></a>
+							  <a class="addthis_counter_email" style="display:inline-block;"></a>
+							</div>
+			</div>
+			
+			<p>
+			
+					<span><b>Love Tech?</b> Keep in touch with new posts by Grid Dynamics </span>
+								
+				<a id="subscribe" class="mobile">Subscribe</a>
+			</p>
+			
+		</div>
+	</div>
+	
+	<footer>
+		<div class="inner">
+			<p class="left">&copy; 2006-2020 GridDynamics</p>
+			<a class="left servicelink" href="https://www.griddynamics.com/privacy">Privacy Policy</a>
+			<a class="left servicelink" href="">Terms of Use</a>
+			<a class="left servicelink" href="https://www.griddynamics.com/gdpr">GDPR Compliance Statement</a>
+			<ul class="right social2">
+				<li class="facebook"><a href="https://www.facebook.com/griddynamics" target="_blank"></a></li>
+				<li class="twitter"><a href="https://twitter.com/griddynamics" target="_blank"></a></li>
+				<li class="linkedin"><a href="https://www.linkedin.com/company/grid-dynamics" target="_blank"></a></li>
+				<li class="youtube"><a href="https://www.youtube.com/channel/UCFX-U3YT1ANC907BzvhNn7Q" target="_blank"></a></li>
+			</ul>
+			<p class="right">
+				<a href="tel:16505235000">+1 (650) 523-5000</a>
+				<a href="mailto:info@griddynamics.com">info@griddynamics.com</a>
+			</p>
+		</div>
+	</footer>
+	
+	<script defer src="/assets/js/jquery-1.12.4.min.js?v=8e89579899"></script>
+    <script defer src="/assets/js/fancybox/jquery.fancybox.pack.js?v=8e89579899"></script>
+	<script defer src="/assets/js/jquery.scrolltofixed.min.js?v=8e89579899"></script>
+	<script defer src="/assets/js/slick/slick.min.js?v=8e89579899"></script>
+	<script defer src="/assets/js/jquery.ellipsis.js?v=8e89579899"></script>
+	<script defer src="/assets/js/jquery.ghosthunter.min.js?v=8e89579899"></script>
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57289bbf3424cb6d"></script>
+	<script defer src="/assets/js/prognroll.min.js?v=8e89579899"></script>
+	<script defer src="/assets/js/my.js?v=8e89579899"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet"/>
+<link href="//cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet"/>
+<script defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+<script defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/plugins/show-language/prism-show-language.min.js"></script>
+<script defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-latex.min.js"></script>
+<script defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-python.min.js"></script>
+<script defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-markdown.min.js"></script>
+<script defer type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        processEscapes: true
+    }
+});
+</script>
+<script type="text/javascript">
+piAId = '712483';
+piCId = '1910';
+piHostname = 'pi.pardot.com';
+
+(function() {
+function async_load(){
+var s = document.createElement('script'); s.type = 'text/javascript';
+s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+}
+if(window.attachEvent) { window.attachEvent('onload', async_load); }
+else { window.addEventListener('load', async_load, false); }
+})();
+    
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>
+<script type="text/javascript">
+window.google_trackConversion({
+  google_conversion_id: 881946558, 
+  google_custom_params: window.google_tag_params,
+  google_remarketing_only: true
+});
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/881946558/?guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/1994023.js"></script>
+<!-- End of HubSpot Embed Code -->
+</div>
+<script type="text/javascript"> _linkedin_partner_id = "400865"; window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || []; window._linkedin_data_partner_ids.push(_linkedin_partner_id); </script><script type="text/javascript"> (function(){var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s);})(); </script> <noscript> <img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=400865&fmt=gif" /> </noscript>
+<script defer type="text/javascript" src="https://secure.leadforensics.com/js/147129.js" ></script>
+<noscript><img alt="" src="https://secure.leadforensics.com/147129.png" style="display:none;" /></noscript>
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(39240280, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        trackHash:true
+   });
+</script>
+
+	
+	<div id="mobnav">
+		<div class="row1">
+			<form action="/search/" method="get" id="mobsearch" style="min-height:25px;">
+				<input type="submit" id="submit2" name="submit2" value="" style="display:none;">
+				<input type="text" id="search2" name="s" placeholder="SEARCH" style="display:none;">
+			</form>
+		</div>
+		<div class="row1 clearfix">
+			<a href="https://www.griddynamics.com/contact" id="getintouch2">Get in touch</a>
+			<a id="phone2" href="tel:16505235000">650-523-5000</a>
+		</div>
+		<div class="row1">
+			<a href="https://www.facebook.com/griddynamics" target="_blank" class="facebook"></a>
+			<a href="https://twitter.com/griddynamics" target="_blank" class="twitter"></a>
+			<a href="https://www.linkedin.com/company/grid-dynamics" target="_blank" class="linkedin"></a>
+			<a href="https://www.youtube.com/channel/UCFX-U3YT1ANC907BzvhNn7Q" target="_blank" class="youtube"></a>
+		</div>
+		<div class="row1 nobottom">
+			<ul id="topmenu2">
+				<li><a href="https://www.griddynamics.com/services">Services</a></li>
+				<li><a href="https://www.griddynamics.com/technologies">Technologies</a></li>
+				<li><a href="https://www.griddynamics.com/partnerships">Partnerships</a></li>
+				<li><a href="https://www.griddynamics.com/careers">Careers</a></li>
+				<li><a href="https://www.griddynamics.com/events">Events</a></li>
+				<li><a href="https://www.griddynamics.com/company">About Us</a></li>
+				<li class="current"><a href="/">Blog</a></li>
+				<li><a href="https://www.griddynamics.com/investor-relations">Investors</a></li>
+			</ul>
+		</div>
+		<div class="row1 nobottom">
+			<a href="https://www.facebook.com/griddynamics" target="_blank" class="facebook"></a>
+			<a href="https://twitter.com/griddynamics" target="_blank" class="twitter"></a>
+			<a href="https://www.linkedin.com/company/grid-dynamics" target="_blank" class="linkedin"></a>
+			<a href="https://www.youtube.com/channel/UCFX-U3YT1ANC907BzvhNn7Q" target="_blank" class="youtube"></a>
+			<br>
+			<a class="slink" href="tel:+16505235000">+1 (650)523-5000</a>
+			<a class="slink email" href="mailto:info@griddynamics.com">info@griddynamics.com</a>
+			<br>
+			<a class="slink" href="https://www.griddynamics.com/privacy">Privacy Policy</a>
+			<a class="slink" href="https://www.griddynamics.com/gdpr">GDPR Statement</a>
+			<a class="slink" href="">Terms of Use</a>
+			<br>
+			&copy; 2006-2020 GridDynamics
+		</div>
+	</div>
+	<div id="searchform1" class="leaveform">
+		<div class="myinner2">
+			<a class="closemenot3"></a>
+			<div class="myinner">
+				<form action="/search/" method="get" id="newsearch">
+					<input type="submit" value="" class="button search2">
+					<input type="text" class="field" name="s" id="search-field" placeholder="Search">
+				</form>
+				<span id="totalfound" style="display:none;color:#FF860B;font-size: 48px;font-weight: 300;line-height:60px;margin:30px auto;">We found <g>10</g> results</span>
+				<svg id="searchdone" style="display:none;" version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				  viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+				  <circle fill="#FF8516" stroke="none" cx="6" cy="50" r="6">
+					<animateTransform 
+					   attributeName="transform" 
+					   dur="1s" 
+					   type="translate" 
+					   values="0 15 ; 0 -15; 0 15" 
+					   repeatCount="indefinite" 
+					   begin="0.1"/>
+				  </circle>
+				  <circle fill="#FF8516" stroke="none" cx="30" cy="50" r="6">
+					<animateTransform 
+					   attributeName="transform" 
+					   dur="1s" 
+					   type="translate" 
+					   values="0 10 ; 0 -10; 0 10" 
+					   repeatCount="indefinite" 
+					   begin="0.2"/>
+				  </circle>
+				  <circle fill="#FF8516" stroke="none" cx="54" cy="50" r="6">
+					<animateTransform 
+					   attributeName="transform" 
+					   dur="1s" 
+					   type="translate" 
+					   values="0 5 ; 0 -5; 0 5" 
+					   repeatCount="indefinite" 
+					   begin="0.3"/>
+				  </circle>
+				</svg>
+				<section id="results2"><div id="results"></div></section>
+			</div>
+		</div>
+	</div>
+		
+	<div id="leaveform1" class="leaveform">
+		<div class="myinner2">
+			<a class="closemenot2"></a>
+		<div class="myinner">
+			<span class="hh1">Subscribe to updates from the Grid&nbsp;Dynamics&nbsp;Blog</span>
+			<!-- Begin Newsletter Signup Form -->
+			<!--  -->
+			<style type="text/css">#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }</style>
+			<div id="mc_embed_signup">
+			
+				<form action="https://campaigns.griddynamics.com/l/711483/2019-10-07/9fgbn" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					<div id="mc_embed_signup_scroll">
+						<div class="whattohide">
+							<div class="mc-field-group">
+								<input type="email" value="" required name="email" class="required email grabme3" id="mce-EMAIL" placeholder="Email Address*">
+							</div>
+							<div class="mc-field-group">
+								<input type="text" value="" required name="firstname" class="required" id="mce-FNAME" placeholder="First Name*">
+							</div>
+							<div class="mc-field-group">
+								<input type="text" value="" required name="lastname" class="required" id="mce-LNAME" placeholder="Last Name*">
+							</div>
+						</div>
+						<div class="whattohide">
+							<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_87e94be7f2f8696424cb7e36a_894069e189" tabindex="-1" value=""></div>
+							<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe2" class="button"></div>
+						</div>
+					</div>
+				</form>
+								
+				
+			</div>
+			<svg id="subscrdone" style="display:none;" version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			  viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+			  <circle fill="#FF8516" stroke="none" cx="6" cy="50" r="6">
+				<animateTransform 
+				   attributeName="transform" 
+				   dur="1s" 
+				   type="translate" 
+				   values="0 15 ; 0 -15; 0 15" 
+				   repeatCount="indefinite" 
+				   begin="0.1"/>
+			  </circle>
+			  <circle fill="#FF8516" stroke="none" cx="30" cy="50" r="6">
+				<animateTransform 
+				   attributeName="transform" 
+				   dur="1s" 
+				   type="translate" 
+				   values="0 10 ; 0 -10; 0 10" 
+				   repeatCount="indefinite" 
+				   begin="0.2"/>
+			  </circle>
+			  <circle fill="#FF8516" stroke="none" cx="54" cy="50" r="6">
+				<animateTransform 
+				   attributeName="transform" 
+				   dur="1s" 
+				   type="translate" 
+				   values="0 5 ; 0 -5; 0 5" 
+				   repeatCount="indefinite" 
+				   begin="0.3"/>
+			  </circle>
+			</svg>
+			
+			
+		</div>
+		</div>
+	</div>
+
+</body>
+</html>

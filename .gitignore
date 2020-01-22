@@ -1,0 +1,11 @@
+#db
+*.db
+
+#idea
+.idea
+
+#PyCharm
+__pycache__/
+
+# mac
+.DS_Store
