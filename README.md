@@ -17,4 +17,7 @@ To run a crawler:
 To run unit tests:
 python3 -m unittest -v tests/test_spiders.py tests/test_report_data.py
 
+Unit tests run result:
+https://github.com/freedomserg/gd-python-project/issues/1#issuecomment-577230679
+
 

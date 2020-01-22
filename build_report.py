@@ -51,11 +51,18 @@ def _get_top_7_tags_df(all_posts_df):
     Resulting Dataframe consists of 7 top tags sorted by number of blog posts.
     """
 
-    all_posts_df["tags"] = all_posts_df["tags"].apply(lambda tags_str: tags_str.split("::"))
+    all_posts_df["tags"] = all_posts_df["tags"].apply(lambda tags_str: _convert_tags_str_into_list(tags_str))
     title_and_tags_df = all_posts_df[["title", "tags"]]
     posts_per_tag_df = _get_posts_per_tag_df(title_and_tags_df)
     posts_per_tag_df["posts"] = posts_per_tag_df["posts"].apply(lambda posts_list: len(posts_list))
     return posts_per_tag_df.sort_values("posts", ascending=False).head(7).iloc[::-1]
+
+
+def _convert_tags_str_into_list(tags_str):
+    if tags_str is None:
+        return []
+    else:
+        return tags_str.split("::")
 
 
 def _get_top_5_authors_df(session):

@@ -63,7 +63,7 @@ class BlogSpider(Spider):
         post_loader.add_value("title", post_title)
         post_loader.add_value("url", response.request.url)
 
-        post_text_selector = raw_post.css("div#postcontent > div#mypost > div.kg-card-markdown")
+        post_text_selector = raw_post.css("div#postcontent > div#mypost")
         post_text = post_text_selector.xpath('string(.)').extract_first()
         post_loader.add_value("content", post_text[:160])
 
